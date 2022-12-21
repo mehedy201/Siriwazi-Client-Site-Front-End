@@ -1,0 +1,19 @@
+.for_font_family{
+    font-family: 'Nunito Sans', sans-serif;
+}
+.hero_section_button2{
+    padding: 9px 20px;
+    background-color: #8f0909;
+    color: white;
+    font-weight: bold;
+    border: 1px solid #8f0909;
+    cursor: pointer;
+}
+.hero_section_button1{
+    padding: 9px 20px;
+    background-color: transparent;
+    color: black;
+    font-weight: bold;
+    border: 1px solid #8f0909;
+    cursor: pointer;
+}
