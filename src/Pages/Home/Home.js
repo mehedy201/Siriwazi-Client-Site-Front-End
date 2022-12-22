@@ -25,9 +25,11 @@ const Home = () => {
                       <div className="modal modal-bottom sm:modal-middle">
                         <div className="modal-box">
                           <h3 className="font-bold text-xl for_font_family capitalize mb-4">Post Information</h3>
-                          <Link className='block p-2 flex items-center font-semibold bg-slate-50 hover:bg-slate-100	' to={'/post-about-a-person'}><BsPlusLg className='mr-2'/> Posting About a Person</Link>
-                          <Link className='block p-2 flex items-center font-semibold bg-slate-50  hover:bg-slate-100 ' to={'/'}><BsPlusLg className='mr-2'/> Posting About an Organization</Link>
-                          <Link className='block p-2 flex items-center font-semibold bg-slate-50 hover:bg-slate-100	' to={'/'}><BsPlusLg className='mr-2'/> Posting About an Product/Service</Link>
+                          <div className='divide-y divide-slate-200'>
+                            <Link className='block p-2 flex items-center font-semibold hover:bg-slate-100	' to={'/post-about-a-person'}><BsPlusLg className='mr-2'/> Posting About a Person</Link>
+                            <Link className='block p-2 flex items-center font-semibold hover:bg-slate-100 ' to={'/post-about-an-organization'}><BsPlusLg className='mr-2'/> Posting About an Organization</Link>
+                            <Link className='block p-2 flex items-center font-semibold hover:bg-slate-100	' to={'/'}><BsPlusLg className='mr-2'/> Posting About an Product/Service</Link>
+                          </div>
                           <div className="modal-action">
                             <label htmlFor="my-modal-6" className="btn btn-sm capitalize">Close</label>
                           </div>
@@ -43,9 +45,11 @@ const Home = () => {
                       <div className="modal modal-bottom sm:modal-middle">
                         <div className="modal-box">
                           <h3 className="font-bold text-xl for_font_family capitalize mb-4">Search Information</h3>
-                          <Link className='block p-2 flex items-center font-semibold bg-slate-50 hover:bg-slate-100	' to={'/'}><BsSearch className='mr-2'/> Person Search</Link>
-                          <Link className='block p-2 flex items-center font-semibold bg-slate-50  hover:bg-slate-100 ' to={'/'}><BsSearch className='mr-2'/> Organization Search</Link>
-                          <Link className='block p-2 flex items-center font-semibold bg-slate-50 hover:bg-slate-100	' to={'/'}><BsSearch className='mr-2'/> Product/Service Search</Link>
+                          <div className='divide-y divide-slate-200'>
+                            <Link className='block p-2 flex items-center font-semibold hover:bg-slate-100	' to={'/'}><BsSearch className='mr-2'/> Person Search</Link>
+                            <Link className='block p-2 flex items-center font-semibold  hover:bg-slate-100 ' to={'/'}><BsSearch className='mr-2'/> Organization Search</Link>
+                            <Link className='block p-2 flex items-center font-semibold hover:bg-slate-100	' to={'/'}><BsSearch className='mr-2'/> Product/Service Search</Link>
+                          </div>
                           <div className="modal-action">
                             <label htmlFor="my-modal-7" className="btn btn-sm capitalize">Close</label>
                           </div>

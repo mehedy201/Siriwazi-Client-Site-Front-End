@@ -6,47 +6,38 @@ import dayjs from 'dayjs';
 const PostAboutPerson = () => {
     // Input Select Phone or Other------------------------
     const [identityName, setIdentityName] = useState('')
-    console.log(identityName)
 
     const [identityNo, setIdentityNo] = useState('')
-    console.log(identityNo)
 
     const [title, setTitle] = useState('')
-    console.log(title)
 
     // Text Area Value------------------------------------
     const [discribeDetails, setDiscribeDetails] = useState('')
-    console.log('Change:', discribeDetails);
     // Text Area Value------------------------------------
     const [discribeMoreDetails, setDiscribeMoreDetails] = useState('')
-    console.log('Change:', discribeMoreDetails);
     // Date and Time State
     const [selectDate, setSelectDate] = useState([])
     const [selectTime, setSelectTime] = useState([])
-    console.log(selectDate)
-    console.log(selectTime)
+
 
     // multiple Select Describe The person..................
     const [discribeWithCheck, setDiscribeWithCheck] = useState('')
-    console.log(discribeWithCheck)
 
     // Last True False Value 
     let defaultValue = 'Most likely not true'
     const [trueFals, setTrueFalse] = useState(defaultValue);
  
 
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        const data = {identityName, identityNo, title, discribeDetails, discribeMoreDetails, selectDate, selectTime, discribeWithCheck, trueFals}
+        console.log(data);
+    }
     
 
 
     return (
-        // <div className='py-4 bg-[#8f0909] border-t-2 border-white-500'>
-        //     <div className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto'>
-        //         <div className='py-12'>
-        //             <p className='text-white font-bold text-4xl for_font_family'>Post About a Person</p>
-        //             <div className='w-100 bg-white md:w-1/2 mt-2' style={{height: '1px'}}></div>
-        //         </div>
-        //     </div>
-        // </div>
         <>
             <div className='py-4 bg-[#8f0909] border-t-2 border-white-500'>
                 <div className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto'>
@@ -57,7 +48,7 @@ const PostAboutPerson = () => {
                 </div>
             </div>
             <div className='mb-12 xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto md:p-12 shadow'>
-                <form className='p-6 md:p-12 shadow'>
+                <form onSubmit={handleSubmit} className='p-6 md:p-12 shadow'>
                     <p className='font-bold text-2xl for_font_family mb-4'>Post Your valuable Feadback</p>
                     <div className='w-100 bg-red-200 md:w-1/2 mb-4' style={{height: '1px'}}></div>
                     <div className='md:flex justify-between'>
@@ -180,7 +171,7 @@ const PostAboutPerson = () => {
                         <p className='font-bold mb-1 mt-2'>The value of this input will depend on your form fill</p>
                         <Input size='large' value={trueFals? trueFals: ''} disabled readOnly/>
                         {/* Submit Button -------------------------------------------------------- */}
-                        <input className='mt-4 py-2 px-10 bg-[#8f0909] border-none font-bold text-black-500' type="submit" value={'Submit'} />
+                        <input className='mt-4 py-2 px-10 bg-[#8f0909] border-none font-bold text-white cursor-pointer	' type="submit" value={'Submit'} />
                 </form>
             </div>
         </>
