@@ -8,10 +8,10 @@ import NavigationMenu from './SheardComponents/NavigationMenu/NavigationMenu';
 function App() {
   return (
     <div >
-      <header className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto'>
+      <header className=''>
         <NavigationMenu/>
       </header>
-      <main className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto'>
+      <main className=''>
         <Routes>
           <Route path='/' element={<Home/>}></Route>
           <Route path='/post-about-a-person' element={<PostAboutPerson/>}></Route>
