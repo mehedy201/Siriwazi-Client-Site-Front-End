@@ -6,33 +6,30 @@ import dayjs from 'dayjs';
 const PostAboutPerson = () => {
     // Input Select Phone or Other------------------------
     const [identityName, setIdentityName] = useState('')
-
     const [identityNo, setIdentityNo] = useState('')
-
     const [title, setTitle] = useState('')
-
-    // Text Area Value------------------------------------
-    const [discribeDetails, setDiscribeDetails] = useState('')
-    // Text Area Value------------------------------------
-    const [discribeMoreDetails, setDiscribeMoreDetails] = useState('')
-    // Date and Time State
-    const [selectDate, setSelectDate] = useState([])
-    const [selectTime, setSelectTime] = useState([])
-
-
-    // multiple Select Describe The person..................
+    const [discription, setDiscription] = useState('')
+    const [discriptionMore, setDiscriptionMore] = useState('')
+    const [date, setDate] = useState([])
+    const [time, setTime] = useState([])
     const [discribeWithCheck, setDiscribeWithCheck] = useState('')
 
     // Last True False Value 
     let defaultValue = 'Most likely not true'
     const [trueFals, setTrueFalse] = useState(defaultValue);
- 
-
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        const data = {identityName, identityNo, title, discribeDetails, discribeMoreDetails, selectDate, selectTime, discribeWithCheck, trueFals}
-        console.log(data);
+        const data = {identityName, identityNo, title, discription, discriptionMore, date, time, discribeWithCheck, trueFals};
+        fetch('http://localhost:5000/personData', {
+            method: 'POST',
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
     }
     
 
@@ -89,7 +86,7 @@ const PostAboutPerson = () => {
                               height: 120,
                               marginBottom: 24,
                             }}
-                            onChange={e => setDiscribeDetails(e.target.value)}
+                            onChange={e => setDiscription(e.target.value)}
                             placeholder="Right Here.........."
                             required
                         />
@@ -146,11 +143,11 @@ const PostAboutPerson = () => {
                                 let trueFalseData0 = 'Most likely not true'
                                 let trueFalseData1 = 'Maybe true'
                                 let trueFalseData2 = 'Most likely true'
-                                setDiscribeMoreDetails(e.target.value)
-                                if(discribeMoreDetails.length > 5) setTrueFalse(trueFalseData1)
-                                if(discribeMoreDetails.length > 5 && selectDate.length > 1) setTrueFalse(trueFalseData2)
-                                if(discribeMoreDetails.length < 5 && selectDate.length > 1) setTrueFalse(trueFalseData1)
-                                if(discribeMoreDetails.length < 5 && selectDate.length < 1) setTrueFalse(trueFalseData0)
+                                setDiscriptionMore(e.target.value)
+                                if(discriptionMore.length > 5) setTrueFalse(trueFalseData1)
+                                if(discriptionMore.length > 5 && date.length > 1) setTrueFalse(trueFalseData2)
+                                if(discriptionMore.length < 5 && date.length > 1) setTrueFalse(trueFalseData1)
+                                if(discriptionMore.length < 5 && date.length < 1) setTrueFalse(trueFalseData0)
                             }}
                             placeholder="Right Here.........."
                         />
@@ -160,13 +157,13 @@ const PostAboutPerson = () => {
                                  let trueFalseData0 = 'Most likely not true'
                                  let trueFalseData1 = 'Maybe true'
                                  let trueFalseData2 = 'Most likely true'
-                                 setSelectDate( dateString)
+                                 setDate( dateString)
                                  if(dateString.lenght > 1) setTrueFalse(trueFalseData1)
-                                 if(dateString.length > 1 && discribeMoreDetails.length > 5)setTrueFalse(trueFalseData2)
-                                 if(dateString.length < 1 && discribeMoreDetails.length > 5)setTrueFalse(trueFalseData1)
-                                 if(dateString.length < 1 && discribeMoreDetails.length < 5)setTrueFalse(trueFalseData0)
+                                 if(dateString.length > 1 && discriptionMore.length > 5)setTrueFalse(trueFalseData2)
+                                 if(dateString.length < 1 && discriptionMore.length > 5)setTrueFalse(trueFalseData1)
+                                 if(dateString.length < 1 && discriptionMore.length < 5)setTrueFalse(trueFalseData0)
                             }} />
-                            <TimePicker onChange={(time, timeString) => setSelectTime(timeString)} defaultValue={dayjs('00:00:00', 'HH:mm:ss')} />
+                            <TimePicker onChange={(time, timeString) => setTime(timeString)} defaultValue={dayjs('00:00:00', 'HH:mm:ss')} />
                         </div>
                         <p className='font-bold mb-1 mt-2'>The value of this input will depend on your form fill</p>
                         <Input size='large' value={trueFals? trueFals: ''} disabled readOnly/>
