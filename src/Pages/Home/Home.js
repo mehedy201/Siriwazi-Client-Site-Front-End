@@ -28,7 +28,7 @@ const Home = () => {
                           <div className='divide-y divide-slate-200'>
                             <Link className='block p-2 flex items-center font-semibold hover:bg-slate-100	' to={'/post-about-a-person'}><BsPlusLg className='mr-2'/> Posting About a Person</Link>
                             <Link className='block p-2 flex items-center font-semibold hover:bg-slate-100 ' to={'/post-about-an-organization'}><BsPlusLg className='mr-2'/> Posting About an Organization</Link>
-                            <Link className='block p-2 flex items-center font-semibold hover:bg-slate-100	' to={'/'}><BsPlusLg className='mr-2'/> Posting About an Product/Service</Link>
+                            <Link className='block p-2 flex items-center font-semibold hover:bg-slate-100	' to={'/post-about-an-product-service'}><BsPlusLg className='mr-2'/> Posting About an Product/Service</Link>
                           </div>
                           <div className="modal-action">
                             <label htmlFor="my-modal-6" className="btn btn-sm capitalize">Close</label>

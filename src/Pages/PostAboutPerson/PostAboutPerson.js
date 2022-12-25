@@ -2,6 +2,7 @@ import { Checkbox, DatePicker, Input, Select, TimePicker } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
+import './PostAboutPerson.css'
 
 const PostAboutPerson = () => {
     // Input Select Phone or Other------------------------
