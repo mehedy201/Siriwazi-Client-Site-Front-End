@@ -22,10 +22,24 @@ const PostAboutOrganization = () => {
     const [code, setCode] = useState('')
     const [stateData, setStateData] = useState([]);
     const [cityData, setCityData] = useState([]);
-
+    
     // Get All Country List _____________________
     const allCountry = Country.getAllCountries();
-   
+    
+    // Handle Submit Button____________________________________________________________________
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        const data = {organizationName, inputCountryData, inputStateData, inputCityData, discriptionMore, date, time, discribeWithCheck, trueFals};
+        fetch('http://localhost:5000/organizationData', {
+            method: 'POST',
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+    }
         
 
 
@@ -42,7 +56,7 @@ const PostAboutOrganization = () => {
                 </div>
             </div>
             <div  className='mb-12 xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto md:p-12 shadow'>
-                <form className='p-6 md:p-12 shadow'>
+                <form onSubmit={handleSubmit} className='p-6 md:p-12 shadow'>
                     <p className='font-bold text-2xl for_font_family mb-4'>Post Your valuable Feadback</p>
                     <div className='w-100 bg-red-200 md:w-1/2 mb-4' style={{height: '1px'}}></div>
                     <p className='font-bold mb-1 mt-2'><span>Name of the Organization <span className='text-red-600'>*</span></span></p>
@@ -115,13 +129,7 @@ const PostAboutOrganization = () => {
                             />
                         </div>
                     </div>
-
-
-
-
-
                     <p className='font-bold mb-1 mt-2'>Describe the person using a maximum of three words <span className='text-red-600'>*</span></p>
-                        {/* <Checkbox.Group options={plainOptions} defaultValue={['']} onChange={handleMultipleSelect} /> */}
                         <Checkbox.Group
                             style={{
                               width: '100%',
@@ -188,6 +196,8 @@ const PostAboutOrganization = () => {
                         </div>
                         <p className='font-bold mb-1 mt-2'>The value of this input will depend on your form fill</p>
                         <Input size='large' value={trueFals? trueFals: ''} disabled readOnly/>
+                        {/* Submit Button -------------------------------------------------------- */}
+                        <input className='mt-4 py-2 px-10 bg-[#8f0909] border-none font-bold text-white cursor-pointer	' type="submit" value={'Submit'} />
                 </form>
             </div>
             

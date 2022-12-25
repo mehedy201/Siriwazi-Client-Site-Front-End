@@ -92,7 +92,6 @@ const PostAboutPerson = () => {
                             required
                         />
                         <p className='font-bold mb-1 mt-2'>Describe the person using a maximum of three words <span className='text-red-600'>*</span></p>
-                        {/* <Checkbox.Group options={plainOptions} defaultValue={['']} onChange={handleMultipleSelect} /> */}
                         <Checkbox.Group
                             style={{
                               width: '100%',
