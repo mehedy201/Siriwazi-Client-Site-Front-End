@@ -7,12 +7,15 @@ import { Link } from 'react-router-dom';
 import { Checkbox } from 'antd';
 
 
+
 const Home = () => {
   const [termsCondition, setTermsCondition] = useState(false);
 
   const onChange = (e) => {
     setTermsCondition(e.target.checked);
   };
+
+
     return (
         <div className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto'>
           <div className="hero my-8">
@@ -30,7 +33,7 @@ const Home = () => {
                       <input type="checkbox" id="my-modal-6" className="modal-toggle" />
                       <div className="modal">
                         <div className="modal-box w-11/12 max-w-5xl relative">
-                        <label for="my-modal-6" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                        <label htmlFor="my-modal-6" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                           {
                             termsCondition === true ?
                             <h3 className="font-bold text-xl for_font_family capitalize mb-4">Post Information</h3>
@@ -63,7 +66,7 @@ const Home = () => {
                       <input type="checkbox" id="my-modal-7" className="modal-toggle" />
                       <div className="modal">
                         <div className="modal-box w-11/12 max-w-5xl relative">
-                        <label for="my-modal-7" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                        <label htmlFor="my-modal-7" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                           {
                             termsCondition === true ?
                             <h3 className="font-bold text-xl for_font_family capitalize mb-4">Search Information</h3>

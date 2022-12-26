@@ -19,9 +19,12 @@ const PostAboutPerson = () => {
     let defaultValue = 'Most likely not true'
     const [trueFals, setTrueFalse] = useState(defaultValue);
 
+    // Posting Time___________________________________________
+    const postingTime = Date.now();
+
     const handleSubmit = (event) => {
         event.preventDefault()
-        const data = {identityName, identityNo, title, discription, discriptionMore, date, time, discribeWithCheck, trueFals};
+        const data = {identityName, identityNo, title, discription, discriptionMore, date, time, discribeWithCheck, trueFals, postingTime};
         fetch('http://localhost:5000/personData', {
             method: 'POST',
             headers:{

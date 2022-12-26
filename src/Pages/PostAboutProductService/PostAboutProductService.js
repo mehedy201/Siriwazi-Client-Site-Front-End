@@ -26,11 +26,13 @@ const PostAboutProductService = () => {
     // Get All Country List _____________________
     const allCountry = Country.getAllCountries();
 
+    // Posting Time___________________________________________
+    const postingTime = Date.now();
 
     // Handle Submit Button____________________________________________________________________
     const handleSubmit = (event) => {
         event.preventDefault()
-        const data = {productServiceName, inputCountryData, inputStateData, inputCityData, discriptionMore, date, time, discribeWithCheck, trueFals};
+        const data = {productServiceName, inputCountryData, inputStateData, inputCityData, discriptionMore, date, time, discribeWithCheck, trueFals, postingTime};
         fetch('http://localhost:5000/product-service', {
             method: 'POST',
             headers:{

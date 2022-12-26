@@ -25,11 +25,14 @@ const PostAboutOrganization = () => {
     
     // Get All Country List _____________________
     const allCountry = Country.getAllCountries();
+
+    // Posting Time___________________________________________
+    const postingTime = Date.now();
     
     // Handle Submit Button____________________________________________________________________
     const handleSubmit = (event) => {
         event.preventDefault()
-        const data = {organizationName, inputCountryData, inputStateData, inputCityData, discriptionMore, date, time, discribeWithCheck, trueFals};
+        const data = {organizationName, inputCountryData, inputStateData, inputCityData, discriptionMore, date, time, discribeWithCheck, trueFals, postingTime};
         fetch('http://localhost:5000/organizationData', {
             method: 'POST',
             headers:{
