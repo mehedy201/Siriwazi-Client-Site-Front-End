@@ -6,7 +6,7 @@ import { Country, State, City }  from 'country-state-city';
 
 const PostAboutProductService = () => {
     
-    const [organizationName, setOrganizationName] = useState('')
+    const [productServiceName, setProductServiceName] = useState('')
     const [inputCountryData, setInputCountryData] = useState('');
     const [inputStateData, setInputStateData] = useState('');
     const [inputCityData, setInputCityData] = useState('');
@@ -27,6 +27,22 @@ const PostAboutProductService = () => {
     const allCountry = Country.getAllCountries();
 
 
+    // Handle Submit Button____________________________________________________________________
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        const data = {productServiceName, inputCountryData, inputStateData, inputCityData, discriptionMore, date, time, discribeWithCheck, trueFals};
+        fetch('http://localhost:5000/product-service', {
+            method: 'POST',
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+    }
+
+
     return (
         <>
             <div className='py-4 bg-[#8f0909] border-t-2 border-white-500'>
@@ -38,12 +54,11 @@ const PostAboutProductService = () => {
                 </div>
             </div>
             <div  className='mb-12 xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto md:p-12 shadow'>
-                <form className='p-6 md:p-12 shadow'>
+                <form onSubmit={handleSubmit} className='p-6 md:p-12 shadow'>
                     <p className='font-bold text-2xl for_font_family mb-4'>Post Your valuable Feadback</p>
                     <div className='w-100 bg-red-200 md:w-1/2 mb-4' style={{height: '1px'}}></div>
                     <p className='font-bold mb-1 mt-2'><span>Product/Service Name <span className='text-red-600'>*</span></span></p>
-                    <Input size='large' className='font-semibold text-xl' onChange={e => setOrganizationName(e.target.value)} placeholder='' required />
-
+                    <Input size='large' className='font-semibold text-xl' onChange={e => setProductServiceName(e.target.value)} placeholder='' required />
                     <div className='md:flex'>
                         <div className='md:flex-1 md:mr-3'>
                             <p className='font-bold mb-1 mt-2'><span>Country <span className='text-red-600'>*</span></span></p>
