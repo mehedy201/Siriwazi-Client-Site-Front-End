@@ -5,7 +5,7 @@ import OrganizationCard from '../../SheardComponents/PersonCard/OrganizationCard
 
 const SearchAboutOrganization = () => {
 
-    const [inputCountryData, setInputCountryData] = useState('');
+    // const [inputCountryData, setInputCountryData] = useState('');
     const [inputStateData, setInputStateData] = useState('');
     // All Country, State and City Data State___________________________________________________
     const [code, setCode] = useState('')
@@ -47,7 +47,7 @@ const SearchAboutOrganization = () => {
                     <div className='flex-1 mr-4'>
                         <p className='font-bold mb-1 mt-2'>Search by Organization Name</p>
                         <Input size='large' onChange={e => {
-                            if(filter3.lenght !== 0 ){
+                            if(filter3.length > 0 ){
                                 const filter = filter3.filter(data => data.organizationName.toLowerCase().includes(e.target.value.toLowerCase()))
                                 setOrganizationData(filter)
                                 setFilter2(filter)
@@ -57,9 +57,6 @@ const SearchAboutOrganization = () => {
                                 setOrganizationData(filter)
                                 setFilter2(filter)
                             }
-                            // const filter = filter1.filter(data => data.organizationName.toLowerCase().includes(e.target.value.toLowerCase()))
-                            // setOrganizationData(filter)
-                            // setFilter2(filter)
                         }} placeholder='Type Organization Name' />
                     </div>
                     <div className='flex-1 md:flex'>
@@ -71,17 +68,22 @@ const SearchAboutOrganization = () => {
                                   width: '100%',
                                 }}
                                 size='large'
-                                onChange={e => {
+                                onChange={ e => {
                                     const value = e.split('-');
-                                    if(filter2.lenght !== 0 ){
+                                    if(filter2.length > 0 ){
+                                        const filter = filter2.filter(data => data.inputCountryData.includes(value[1]))
+                                        setOrganizationData(filter)
+                                        setFilter3(filter)
+                                        console.log('filter2', filter)
+                                        console.log('filter2')
+
+                                    }
+                                    else{
                                         const filter = filter1.filter(data => data.inputCountryData.toLowerCase().includes(value[1].toLowerCase()))
                                         setOrganizationData(filter)
                                         setFilter3(filter)
-                                    }
-                                    else{
-                                        const filter = filter2.filter(data => data.inputCountryData.toLowerCase().includes(value[1].toLowerCase()))
-                                        setOrganizationData(filter)
-                                        setFilter3(filter)
+                                        console.log('filter1', filter3.length)
+                                        console.log('filter1')
                                     }
 
                                     const stateList = State.getStatesOfCountry(value[0])

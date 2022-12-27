@@ -18,12 +18,22 @@ const SearchAboutProductService = () => {
     // Get All Country List _____________________
     const allCountry = Country.getAllCountries();
 
-    const [productServiceData, setProductServiceData] = useState([])
+    const [productServiceData, setProductServiceData] = useState([]);
+
+    const [filter1 , setFilter1] = useState([]);
+    const [filter2 , setFilter2] = useState([]);
+    const [filter3 , setFilter3] = useState([]);
+    const [filter4 , setFilter4] = useState([]);
     useEffect(() => {
         fetch('http://localhost:5000/product-service')
         .then(res => res.json())
-        .then(data => setProductServiceData(data))
+        .then(data => {
+            setProductServiceData(data)
+            setFilter1(data)
+        })
     }, [])
+    // console.log(productServiceName)
+    console.log(filter3)
     return (
         <>
             <div className='py-4 bg-[#2eab27] border-t-2 border-white-500'>
@@ -39,7 +49,18 @@ const SearchAboutProductService = () => {
                 <div className='md:flex'>
                     <div className='flex-1 mr-4'>
                         <p className='font-bold mb-1 mt-2'>Search by Product/Service Name</p>
-                        <Input size='large' onChange={e => console.log(e)} placeholder='Type Organization Name' />
+                        <Input size='large' onChange={e => {
+                            if(filter3.length > 0 ){
+                                const filter = filter3.filter(data => data.productServiceName.toLowerCase().includes(e.target.value.toLowerCase()))
+                                setProductServiceData(filter)
+                                setFilter2(filter)
+                            }
+                            else{
+                                const filter = filter1.filter(data => data.productServiceName.toLowerCase().includes(e.target.value.toLowerCase()))
+                                setProductServiceData(filter)
+                                setFilter2(filter)
+                            }
+                        }} placeholder='Type Organization Name' />
                     </div>
                     <div className='flex-1 md:flex'>
                         <div className='md:flex-1 md:mr-3'>
@@ -53,6 +74,18 @@ const SearchAboutProductService = () => {
                                 onChange={e => {
                                     const value = e.split('-');
                                     setInputCountryData(value[1]);
+
+                                    if(filter2.length > 0 ){
+                                        const filter = filter2.filter(data => data.inputCountryData.includes(value[1]))
+                                        setProductServiceData(filter)
+                                        setFilter3(filter)
+                                    }
+                                    else{
+                                        const filter = filter1.filter(data => data.inputCountryData.toLowerCase().includes(value[1].toLowerCase()))
+                                        setProductServiceData(filter)
+                                        setFilter3(filter)
+                                    }
+
                                     const stateList = State.getStatesOfCountry(value[0])
                                     setStateData(stateList)
                                     stateList.map(s => setCode(s.countryCode))
@@ -76,7 +109,11 @@ const SearchAboutProductService = () => {
                                 size='large'
                                 onChange={e => {
                                     const value = e.split('-');
-                                    console.log(value[0])
+                                    const filter = filter3.filter(data => data.inputStateData.toLowerCase().includes(value[1].toLowerCase()))
+                                    setProductServiceData(filter)
+                                    setFilter4(filter)
+
+
                                     setInputStateData(value[1])
                                     const city = City.getCitiesOfState(code, value[0]);
                                     setCityData(city)
@@ -98,7 +135,11 @@ const SearchAboutProductService = () => {
                                   width: '100%',
                                 }}
                                 size='large'
-                                onChange={e => setInputCityData(e)}
+                                onChange={e => {
+                                    setInputCityData(e)
+                                    const filter = filter4.filter(data => data.inputCityData.toLowerCase().includes(e.toLowerCase()))
+                                    setProductServiceData(filter)
+                                }}
                                 options={
                                     cityData?.map(city => {
                                     return  {
