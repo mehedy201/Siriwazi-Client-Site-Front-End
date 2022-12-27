@@ -1,4 +1,4 @@
-import { Input, Select } from 'antd';
+import { Empty, Input, Select } from 'antd';
 import React, { useEffect, useState } from 'react';
 import PersonCard from '../../SheardComponents/PersonCard/PersonCard';
 
@@ -30,7 +30,7 @@ const SearchAboutPerson = () => {
                     </div>
                 </div>
             </div> 
-            <div className='mb-12 xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto mt-2 md:p-8 shadow'>
+            <div className='mb-6 xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto mt-2 md:p-8 shadow'>
                 <p className='font-bold bg-[#2eab27] py-2 px-4 text-white'>Filter All</p>
                 <div className='md:flex justify-between'>
                     <div className='flex-1 md:pr-12'>
@@ -70,9 +70,12 @@ const SearchAboutPerson = () => {
                 </div>
             </div>
             <div className='mb-12 xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto mt-2'>
-                {
-                   personData.map(data => <PersonCard key={data._id} data={data} />) 
-                }
+                <div className='mb-1'><span className='font-bold text-green-700'>Result</span>: <span className='font-bold border px-2'>{personData.length}</span></div>
+                <div style={{height: '30rem'}} className='overflow-auto p-6 border'>
+                    {
+                       personData.length !== 0 ? personData.map(data => <PersonCard key={data._id} data={data} />) : <div className='mt-12'><Empty/></div>
+                    }
+                </div>
             </div>
         </>
     );

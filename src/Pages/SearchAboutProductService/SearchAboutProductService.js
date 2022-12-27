@@ -1,4 +1,4 @@
-import { Input, Select } from 'antd';
+import { Empty, Input, Select } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Country, State, City }  from 'country-state-city';
 import ProductServiceCard from '../../SheardComponents/PersonCard/ProductServiceCard';
@@ -153,9 +153,12 @@ const SearchAboutProductService = () => {
                 </div>
             </div> 
             <div className='mb-12 xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto mt-2'>
-                {
-                   productServiceData.map(data => <ProductServiceCard key={data._id} data={data} />) 
-                }
+                <div className='mb-1'><span className='font-bold text-green-700'>Result</span>: <span className='font-bold border px-2'>{productServiceData.length}</span></div>
+                <div style={{height: '30rem'}} className='overflow-auto p-6 border'>
+                    {
+                       productServiceData.length !== 0 ? productServiceData.map(data => <ProductServiceCard key={data._id} data={data} />) : <div className='mt-12'><Empty/></div>
+                    }
+                </div>
             </div>
         </>
     );
