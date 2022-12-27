@@ -6,14 +6,18 @@ import PersonCard from '../../SheardComponents/PersonCard/PersonCard';
 const SearchAboutPerson = () => {
 
     const [identityName, setIdentityName] = useState('')
-    const [identityNo, setIdentityNo] = useState('')
-
 
     const [personData, setPersonData] = useState([])
+    const [forFilter, setFilter] = useState([]);
+    const [idFilter, setIdFilter] = useState([])
+
     useEffect(() => {
         fetch('http://localhost:5000/personData')
         .then(res => res.json())
-        .then(data => setPersonData(data))
+        .then(data => {
+            setPersonData(data)
+            setFilter(data)
+        })
     }, [])
 
     return (
@@ -38,7 +42,11 @@ const SearchAboutPerson = () => {
                             }}
                             size='large'
                             required 
-                            onChange={e => setIdentityName(e)}
+                            onChange={e => {
+                                setIdentityName(e);
+                                setPersonData(forFilter.filter(data =>data.identityName === e ))
+                                setIdFilter(forFilter.filter(data =>data.identityName === e ))
+                            }}
                             options={[
                               { value: 'Phone/Mobile',label: ' Phone/Mobile', },
                               { value: 'Car Registration',label: ' Car Registration', },
@@ -51,7 +59,13 @@ const SearchAboutPerson = () => {
                     </div>
                     <div className='flex-1'>
                         <p  className='font-bold mb-1 mt-2'>{identityName} {identityName? <span>No: Search</span> : ''}</p>
-                        {identityName? <Input size='large' onChange={e => setIdentityNo(e.target.value)} placeholder={`Type ${identityName} No:`} required /> : ''}
+                        {identityName? <Input 
+                                            size='large' 
+                                            onChange={e => {
+                                                const filter = idFilter.filter(data => data.identityNo.includes(e.target.value))
+                                                setPersonData(filter)
+                                            }} 
+                                            placeholder={`Type ${identityName} No:`} /> : ''}
                     </div>
                 </div>
             </div>
