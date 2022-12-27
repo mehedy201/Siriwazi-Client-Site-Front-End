@@ -8,7 +8,7 @@ const PostAboutPerson = () => {
     // Input Select Phone or Other------------------------
     const [identityName, setIdentityName] = useState('')
     const [identityNo, setIdentityNo] = useState('')
-    const [title, setTitle] = useState('')
+    const [personName, setPersonName] = useState('')
     const [discription, setDiscription] = useState('')
     const [discriptionMore, setDiscriptionMore] = useState('')
     const [date, setDate] = useState([])
@@ -24,7 +24,7 @@ const PostAboutPerson = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        const data = {identityName, identityNo, title, discription, discriptionMore, date, time, discribeWithCheck, trueFals, postingTime};
+        const data = {identityName, identityNo, personName, discription, discriptionMore, date, time, discribeWithCheck, trueFals, postingTime};
         fetch('http://localhost:5000/personData', {
             method: 'POST',
             headers:{
@@ -75,17 +75,17 @@ const PostAboutPerson = () => {
                         </div>
                         <div className='flex-1'>
                             <p  className='font-bold mb-1 mt-2'>{identityName} {identityName? <span>No: <span className='text-red-600'>*</span></span> : ''}</p>
-                            {identityName? <Input size='large' onChange={e => setIdentityNo(e.target.value)} placeholder={`Type ${identityName} No:`} required /> : ''}
+                            {identityName? <Input size='large capitalize' onChange={e => setIdentityNo(e.target.value)} placeholder={`Type ${identityName} No:`} required /> : ''}
                         </div>
                     </div>
                         {/* Post Title ----------------------------- */}
-                        <p className='font-bold mb-1 mt-2'>Post Title <span className='text-red-600'>*</span></p>
-                        <Input className='font-bold' onChange={e => setTitle(e.target.value)} size='large' placeholder='Title...' required />
+                        <p className='font-bold mb-1 mt-2'>Person Name <span className='text-red-600'>*</span></p>
+                        <Input className='font-bold' onChange={e => setPersonName(e.target.value)} size='large' placeholder='Title...' required />
                         {/* Discribe About Person ------------ */}
                         <p className='font-bold mb-1 mt-2'>Describe the person <span className='text-red-600'>*</span></p>
                         <TextArea
                             showCount
-                            maxLength={200}
+                            maxLength={400}
                             style={{
                               height: 120,
                               marginBottom: 24,

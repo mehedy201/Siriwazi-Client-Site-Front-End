@@ -76,9 +76,9 @@ const Home = () => {
                           {
                             termsCondition === true ? 
                             <div className='divide-y divide-slate-200'>
-                              <Link className='block p-2 flex items-center font-semibold hover:bg-slate-100	' to={'/'}><BsSearch className='mr-2'/> Person Search</Link>
-                              <Link className='block p-2 flex items-center font-semibold  hover:bg-slate-100 ' to={'/'}><BsSearch className='mr-2'/> Organization Search</Link>
-                              <Link className='block p-2 flex items-center font-semibold hover:bg-slate-100	' to={'/'}><BsSearch className='mr-2'/> Product/Service Search</Link>
+                              <Link className='block p-2 flex items-center font-semibold hover:bg-slate-100	' to={'/search-about-a-person'}><BsSearch className='mr-2'/> Person Search</Link>
+                              <Link className='block p-2 flex items-center font-semibold  hover:bg-slate-100 ' to={'/search-about-an-organization'}><BsSearch className='mr-2'/> Organization Search</Link>
+                              <Link className='block p-2 flex items-center font-semibold hover:bg-slate-100	' to={'/search-about-product-service'}><BsSearch className='mr-2'/> Product/Service Search</Link>
                             </div>
                           : 
                           <div>
