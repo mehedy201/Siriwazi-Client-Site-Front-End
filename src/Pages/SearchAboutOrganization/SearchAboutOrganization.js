@@ -7,7 +7,6 @@ const SearchAboutOrganization = () => {
 
     const [inputCountryData, setInputCountryData] = useState('');
     const [inputStateData, setInputStateData] = useState('');
-    const [inputCityData, setInputCityData] = useState('');
     // All Country, State and City Data State___________________________________________________
     const [code, setCode] = useState('')
     const [stateData, setStateData] = useState([]);
@@ -18,11 +17,20 @@ const SearchAboutOrganization = () => {
 
 
     const [organizationData, setOrganizationData] = useState([])
+    const [filter1 , setFilter1] = useState([]);
+    const [filter2 , setFilter2] = useState([]);
+    const [filter3 , setFilter3] = useState([]);
+    const [filter4 , setFilter4] = useState([]);
+
     useEffect(() => {
         fetch('http://localhost:5000/organizationData')
         .then(res => res.json())
-        .then(data => setOrganizationData(data))
+        .then(data => {
+            setOrganizationData(data)
+            setFilter1(data)
+        })
     }, [])
+    // console.log(organizationData)
     return (
         <>
             <div className='py-4 bg-[#2eab27] border-t-2 border-white-500'>
@@ -38,7 +46,21 @@ const SearchAboutOrganization = () => {
                 <div className='md:flex'>
                     <div className='flex-1 mr-4'>
                         <p className='font-bold mb-1 mt-2'>Search by Organization Name</p>
-                        <Input size='large' onChange={e => console.log(e)} placeholder='Type Organization Name' />
+                        <Input size='large' onChange={e => {
+                            if(filter3.lenght !== 0 ){
+                                const filter = filter3.filter(data => data.organizationName.toLowerCase().includes(e.target.value.toLowerCase()))
+                                setOrganizationData(filter)
+                                setFilter2(filter)
+                            }
+                            else{
+                                const filter = filter1.filter(data => data.organizationName.toLowerCase().includes(e.target.value.toLowerCase()))
+                                setOrganizationData(filter)
+                                setFilter2(filter)
+                            }
+                            // const filter = filter1.filter(data => data.organizationName.toLowerCase().includes(e.target.value.toLowerCase()))
+                            // setOrganizationData(filter)
+                            // setFilter2(filter)
+                        }} placeholder='Type Organization Name' />
                     </div>
                     <div className='flex-1 md:flex'>
                         <div className='md:flex-1 md:mr-3'>
@@ -51,7 +73,17 @@ const SearchAboutOrganization = () => {
                                 size='large'
                                 onChange={e => {
                                     const value = e.split('-');
-                                    setInputCountryData(value[1]);
+                                    if(filter2.lenght !== 0 ){
+                                        const filter = filter1.filter(data => data.inputCountryData.toLowerCase().includes(value[1].toLowerCase()))
+                                        setOrganizationData(filter)
+                                        setFilter3(filter)
+                                    }
+                                    else{
+                                        const filter = filter2.filter(data => data.inputCountryData.toLowerCase().includes(value[1].toLowerCase()))
+                                        setOrganizationData(filter)
+                                        setFilter3(filter)
+                                    }
+
                                     const stateList = State.getStatesOfCountry(value[0])
                                     setStateData(stateList)
                                     stateList.map(s => setCode(s.countryCode))
@@ -75,7 +107,10 @@ const SearchAboutOrganization = () => {
                                 size='large'
                                 onChange={e => {
                                     const value = e.split('-');
-                                    console.log(value[0])
+                                    const filter = filter3.filter(data => data.inputStateData.toLowerCase().includes(value[1].toLowerCase()))
+                                    setOrganizationData(filter)
+                                    setFilter4(filter)
+
                                     setInputStateData(value[1])
                                     const city = City.getCitiesOfState(code, value[0]);
                                     setCityData(city)
@@ -97,7 +132,10 @@ const SearchAboutOrganization = () => {
                                   width: '100%',
                                 }}
                                 size='large'
-                                onChange={e => setInputCityData(e)}
+                                onChange={e => {
+                                    const filter = filter4.filter(data => data.inputCityData.toLowerCase().includes(e.toLowerCase()))
+                                    setOrganizationData(filter)
+                                }}
                                 options={
                                     cityData?.map(city => {
                                     return  {
