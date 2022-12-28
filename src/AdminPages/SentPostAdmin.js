@@ -2,11 +2,11 @@ import { Button, Result } from 'antd';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const PostSent = () => {
+const SentPostAdmin = () => {
     const navigate = useNavigate()
 
     const handleNavigate = () => {
-        navigate('/')
+        navigate('/admin')
     }
     return (
         <div className='md:my-14 py-4 flex justify-center'>
@@ -15,11 +15,11 @@ const PostSent = () => {
                 title="Successfully Post Information"
                 subTitle="Thanks fo Post your Valueble feadback. Please go to search option Then you get our post"
                 extra={[
-                  <Button onClick={handleNavigate} >Go To Home</Button>,
+                  <Button onClick={handleNavigate} >Go To Dashbord</Button>,
                 ]}
             />
         </div>
     );
 };
 
-export default PostSent;
+export default SentPostAdmin;

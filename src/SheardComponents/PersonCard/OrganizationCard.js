@@ -5,11 +5,12 @@ import en from 'javascript-time-ago/locale/en'
 import { Button } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
 import { FullscreenOutlined } from '@ant-design/icons';
+import { DeleteOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
 TimeAgo.addLocale(en);
 
-const OrganizationCard = ({data}) => {
+const OrganizationCard = ({data, handleDelete}) => {
     const { postingTime, trueFals, _id} = data;
         // Create formatter (English)._______________________________
     const timeAgo = new TimeAgo('en-US')
@@ -40,7 +41,9 @@ const OrganizationCard = ({data}) => {
                 <div>
                     {/* <button className='btn btn-sm bg-primary'>Preview</button> */}
                     <Button onClick={() => singlePageView(_id)} style={{width: '150px'}} className='flex items-center inline mb-2' icon={<FullscreenOutlined />}>Full Details</Button>
-                    <Button onClick={homePageHandle} style={{width: '150px'}} className='flex items-center inline' icon={<HomeOutlined />}>Back to Home</Button>
+                    {
+                        handleDelete? <Button onClick={() => handleDelete(_id)} style={{width: '150px'}} className='flex items-center inline' icon={<DeleteOutlined />}>Delete</Button>  : <Button onClick={homePageHandle} style={{width: '150px'}} className='flex items-center inline' icon={<HomeOutlined />}>Back to Home</Button>
+                    }
                 </div>
             </div>
         </div>
