@@ -44,7 +44,7 @@ const SearchAboutProductService = () => {
                     </div>
                 </div>
             </div>
-            <div className='mb-12 xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto mt-2 md:p-8 shadow'>
+            <div className='mb-6 xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto mt-2 md:p-8 shadow'>
                 <p className='font-bold bg-[#2eab27] py-2 px-4 text-white'>Filter All</p>
                 <div className='md:flex'>
                     <div className='flex-1 mr-4'>

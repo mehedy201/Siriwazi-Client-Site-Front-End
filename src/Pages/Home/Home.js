@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import heroImage from '../../Images/search&post.webp'
+import heroImage from '../../Images/1000_F (1).jpg'
 import './Home.css';
 import { BsPlusLg } from 'react-icons/bs';
 import { BsSearch } from 'react-icons/bs';
@@ -19,9 +19,11 @@ const Home = () => {
     return (
         <div className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto'>
           <div className="hero my-8">
-            <div className="hero-content flex-col lg:flex-row-reverse">
-              <img src={heroImage} className="max-w-sm" alt='postandsearch'/>
-              <div>
+            <div className="hero-content md:flex flex-row-reverse">
+              <div className='flex-auto'>
+               <img src={heroImage} style={{padding: '10px', height: '350px', width: 'auto'}} className="max-w-sm" alt='postandsearch'/>
+              </div>
+              <div className='flex-auto mr-12'>
                 <p className="text-4xl font-bold for_font_family">Access information about other people, organizations or products and services in the market</p>
                 <p className="py-6 text-justify">Are you happy with somebody, an organization, or a product/service, share your experience with the world on Siriwazi to promote that person/organization/product. If you are not happy, share your experience so that nobody else will go through what you have experienced. At the end, it all comes to the light, so let us treat each other better</p>
                 <div className='flex mt-3'>

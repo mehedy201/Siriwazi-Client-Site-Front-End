@@ -14,6 +14,7 @@ const PostAboutProductService = () => {
     const [date, setDate] = useState([])
     const [time, setTime] = useState([])
     const [discribeWithCheck, setDiscribeWithCheck] = useState('')
+    const [companyOrganizationName, setCompanyOrganizationName] = useState('')
 
     // Last True False Value 
     let defaultValue = 'Most likely not true'
@@ -32,7 +33,7 @@ const PostAboutProductService = () => {
     // Handle Submit Button____________________________________________________________________
     const handleSubmit = (event) => {
         event.preventDefault()
-        const data = {productServiceName, inputCountryData, inputStateData, inputCityData, discriptionMore, date, time, discribeWithCheck, trueFals, postingTime};
+        const data = {productServiceName, inputCountryData, inputStateData, inputCityData, discriptionMore, date, time, discribeWithCheck, trueFals, companyOrganizationName, postingTime};
         fetch('http://localhost:5000/product-service', {
             method: 'POST',
             headers:{
@@ -70,6 +71,7 @@ const PostAboutProductService = () => {
                                   width: '100%',
                                 }}
                                 size='large'
+                                allowClear={true}
                                 onChange={e => {
                                     const value = e.split('-');
                                     setInputCountryData(value[1]);
@@ -84,7 +86,7 @@ const PostAboutProductService = () => {
                                         label: country.name,
                                       }
                                 })}
-                            />      
+                            />     
                         </div>
                         <div  className='md:flex-1 md:mr-3'>
                             <p className='font-bold mb-1 mt-2'><span>State <span className='text-red-600'>*</span></span></p>
@@ -129,6 +131,8 @@ const PostAboutProductService = () => {
                             />
                         </div>
                     </div>
+                    <p className='font-bold mb-1 mt-2'><span>Company/Organization Name <span className='text-red-600'>*</span></span></p>
+                    <Input size='large' className='font-semibold' onChange={e => setCompanyOrganizationName(e.target.value)} placeholder='' required />
                     <p className='font-bold mb-1 mt-2'>Describe the Product/Service using Checkbox Optional</p>
                         <Checkbox.Group
                             style={{

@@ -54,9 +54,14 @@ const SinglePageProductService = () => {
             {/* ________________________________  */}
             <p className='font-semibold mb-2 mt-2'>Describe using Word</p>
             {
-                data?.discribeWithCheck? 
-                    data.discribeWithCheck.map((check, index) => <span key={index} className='border pt-0.5 pb-1 px-4 mr-2 rounded-lg'>{check}</span>)
-                : ''
+                data?.discribeWithCheck && data.discribeWithCheck.map((check, index) => <span key={index} className='border pt-0.5 pb-1 px-4 mr-2 rounded-lg'>{check}</span>)
+            }
+            {
+                data?.companyOrganizationName && 
+                <div>
+                    <p className='text-xl font-semibold mt-4'>Company/Organization Name</p> 
+                    <p className='text-sm fomt-bold'>{data.companyOrganizationName}</p>
+                </div>
             }
             {/* ________________________________  */}
             <p className='text-xl font-semibold mt-4'>Details About {data.productServiceName}</p> 
