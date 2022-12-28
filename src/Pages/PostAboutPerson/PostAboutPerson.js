@@ -1,8 +1,9 @@
-import { Checkbox, DatePicker, Input, Select, TimePicker } from 'antd';
+import { Checkbox, DatePicker, Input, Select, Spin, TimePicker } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import './PostAboutPerson.css'
+import { useNavigate } from 'react-router-dom';
 
 const PostAboutPerson = () => {
     // Input Select Phone or Other------------------------
@@ -14,16 +15,20 @@ const PostAboutPerson = () => {
     const [date, setDate] = useState([])
     const [time, setTime] = useState([])
     const [discribeWithCheck, setDiscribeWithCheck] = useState('')
-
+    
     // Last True False Value 
     let defaultValue = 'Most likely not true'
     const [trueFals, setTrueFalse] = useState(defaultValue);
-
+    
     // Posting Time___________________________________________
     const postingTime = Date.now();
-
+    
+    
+    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
     const handleSubmit = (event) => {
         event.preventDefault()
+        setLoading(true)
         const data = {identityName, identityNo, personName, discription, discriptionMore, date, time, discribeWithCheck, trueFals, postingTime};
         fetch('http://localhost:5000/personData', {
             method: 'POST',
@@ -32,8 +37,13 @@ const PostAboutPerson = () => {
             },
             body: JSON.stringify(data)
         })
-        .then(res => res.json())
-        .then(data => console.log(data))
+        .then(res => {
+            res.json();
+        })
+        .then(data => {
+            setLoading(false)
+            navigate('/post-sent')
+        })
     }
     
 
@@ -75,7 +85,7 @@ const PostAboutPerson = () => {
                         </div>
                         <div className='flex-1'>
                             <p  className='font-bold mb-1 mt-2'>{identityName} {identityName? <span>No: <span className='text-red-600'>*</span></span> : ''}</p>
-                            {identityName? <Input size='large capitalize' onChange={e => setIdentityNo(e.target.value)} placeholder={`Type ${identityName} No:`} required /> : ''}
+                            {identityName? <Input size='large' className='capitalize' onChange={e => setIdentityNo(e.target.value)} placeholder={`Type ${identityName} No:`} required /> : ''}
                         </div>
                     </div>
                         {/* Post Title ----------------------------- */}
@@ -169,7 +179,10 @@ const PostAboutPerson = () => {
                             <TimePicker onChange={(time, timeString) => setTime(timeString)} defaultValue={dayjs('00:00:00', 'HH:mm:ss')} />
                         </div>
                         <p className='font-bold mb-1 mt-2'>The value of this input will depend on your form fill</p>
-                        <Input size='large' value={trueFals? trueFals: ''} disabled readOnly/>
+                        <Input className='mb-2' size='large' value={trueFals? trueFals: ''} disabled readOnly/>
+                        {
+                            loading === true && <div className=''><Spin size="large"/></div>
+                        }
                         {/* Submit Button -------------------------------------------------------- */}
                         <input className='mt-4 py-2 px-10 bg-[#8f0909] border-none font-bold text-white cursor-pointer	' type="submit" value={'Submit'} />
                 </form>

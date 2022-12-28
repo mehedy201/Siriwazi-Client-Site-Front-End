@@ -9,6 +9,7 @@ import SearchAboutPerson from './Pages/SearchAboutPerson/SearchAboutPerson';
 import SearchAboutProductService from './Pages/SearchAboutProductService/SearchAboutProductService';
 import FooterSection from './SheardComponents/FooterSection/FooterSection';
 import NavigationMenu from './SheardComponents/NavigationMenu/NavigationMenu';
+import PostSent from './SheardComponents/PostSent/PostSent';
 import SinglePage from './SheardComponents/SinglePage/SinglePage';
 import SinglePageOrganization from './SheardComponents/SinglePage/SinglePageOrganization';
 import SinglePageProductService from './SheardComponents/SinglePage/SinglePageProductService';
@@ -31,6 +32,7 @@ function App() {
           <Route path='/person-details/:id' element={<SinglePage/>}></Route>
           <Route path='/organization-details/:id' element={<SinglePageOrganization/>}></Route>
           <Route path='/product-service-details/:id' element={<SinglePageProductService/>}></Route>
+          <Route path='/post-sent' element={<PostSent/>}></Route>
         </Routes>
       </main>
       <footer>

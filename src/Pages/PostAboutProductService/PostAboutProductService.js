@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Checkbox, DatePicker, Input, Select, TimePicker } from 'antd';
+import { Checkbox, DatePicker, Input, Select, Spin, TimePicker } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import dayjs from 'dayjs';
 import { Country, State, City }  from 'country-state-city';
+import { useNavigate } from 'react-router-dom';
 
 const PostAboutProductService = () => {
     
@@ -31,8 +32,12 @@ const PostAboutProductService = () => {
     const postingTime = Date.now();
 
     // Handle Submit Button____________________________________________________________________
+    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
+
     const handleSubmit = (event) => {
         event.preventDefault()
+        setLoading(true)
         const data = {productServiceName, inputCountryData, inputStateData, inputCityData, discriptionMore, date, time, discribeWithCheck, trueFals, companyOrganizationName, postingTime};
         fetch('http://localhost:5000/product-service', {
             method: 'POST',
@@ -42,7 +47,10 @@ const PostAboutProductService = () => {
             body: JSON.stringify(data)
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            setLoading(false)
+            navigate('/post-sent')
+        })
     }
 
 
@@ -196,6 +204,9 @@ const PostAboutProductService = () => {
                         </div>
                         <p className='font-bold mb-1 mt-2'>The value of this input will depend on your form fill</p>
                         <Input size='large' value={trueFals? trueFals: ''} disabled readOnly/>
+                        {
+                            loading === true && <div className=''><Spin size="large"/></div>
+                        }
                         {/* Submit Button -------------------------------------------------------- */}
                         <input className='mt-4 py-2 px-10 bg-[#8f0909] border-none font-bold text-white cursor-pointer	' type="submit" value={'Submit'} />
                 </form>
