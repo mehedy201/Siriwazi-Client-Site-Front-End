@@ -24,11 +24,16 @@ const SinglePage = () => {
 
 
     return (
-        <div className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto my-8'>
-            <div className='py-8 for_shadow_css mb-4 p-4 rounded-lg'>
-                <p className='font-bold text-4xl for_font_family'>Full Details About A Person</p>
-                <div className='w-100 bg-[#d4d4d4] md:w-1/2 mt-2' style={{height: '1px'}}></div>
+        <>
+        <div className='py-4 bg-[#2eab27] border-t-2 border-white-500'>
+            <div className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto'>
+                <div className='py-12'>
+                    <p className='text-white font-bold text-4xl for_font_family'>Full Details About <span className='text-[#e8d500]'>{data.personName}</span></p>
+                    <div className='w-100 bg-white md:w-1/2 mt-2' style={{height: '1px'}}></div>
+                </div>
             </div>
+        </div> 
+        <div className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto my-8'>
             <div className='md:flex sm:flex justify-between'>
             <p className='text-2xl font-bold'>Person Name: {data.personName}</p> 
                 {
@@ -91,6 +96,7 @@ const SinglePage = () => {
                 data?.discriptionMore? <p>{data.discriptionMore}</p> : 'No Data'
             }
         </div>
+        </>
     );
 };
 
