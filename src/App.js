@@ -24,6 +24,8 @@ import SinglePageOrganization from './SheardComponents/SinglePage/SinglePageOrga
 import SinglePageProductService from './SheardComponents/SinglePage/SinglePageProductService';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AdminLogin from './Pages/AdminLogin/AdminLogin';
+import RequirAuth from './SheardComponents/RequirAuth/RequirAuth';
 
 function App() {
   return (
@@ -45,16 +47,17 @@ function App() {
           <Route path='/product-service-details/:id' element={<SinglePageProductService/>}></Route>
           <Route path='/post-sent' element={<PostSent/>}></Route>
           {/* Admin Pages _____________________________________________________________________________ */}
-          <Route path='/admin' element={<AdminPageLayout/>}>
-            <Route index element={<Dasboard/>}></Route>
-            <Route path='dashboard' element={<Dasboard/>}></Route>
-            <Route path='create-person-post' element={<PersonPost/>}></Route>
-            <Route path='create-organization-post' element={<OrganizationPost/>}></Route>
-            <Route path='create-product-service-post' element={<ProductServicePost/>}></Route>
-            <Route path='manage-person-post' element={<ManagePersonPost/>}></Route>
-            <Route path='manage-organization-post' element={<ManageOrganizationPost/>}></Route>
-            <Route path='manage-product-sercive-post' element={<ManageProductServicePost/>}></Route>
-            <Route path='post-sent-admin' element={<SentPostAdmin/>}></Route>
+          <Route path='/admin' element={<AdminLogin/>}></Route>
+          <Route path='/admin-dashboard' element={<RequirAuth><AdminPageLayout/></RequirAuth>}>
+            <Route index element={<RequirAuth><Dasboard/></RequirAuth>}></Route>
+            <Route path='dashboard' element={<RequirAuth><Dasboard/></RequirAuth>}></Route>
+            <Route path='create-person-post' element={<RequirAuth><PersonPost/></RequirAuth>}></Route>
+            <Route path='create-organization-post' element={<RequirAuth><OrganizationPost/></RequirAuth>}></Route>
+            <Route path='create-product-service-post' element={<RequirAuth><ProductServicePost/></RequirAuth>}></Route>
+            <Route path='manage-person-post' element={<RequirAuth><ManagePersonPost/></RequirAuth>}></Route>
+            <Route path='manage-organization-post' element={<RequirAuth><ManageOrganizationPost/></RequirAuth>}></Route>
+            <Route path='manage-product-sercive-post' element={<RequirAuth><ManageProductServicePost/></RequirAuth>}></Route>
+            <Route path='post-sent-admin' element={<RequirAuth><SentPostAdmin/></RequirAuth>}></Route>
           </Route>
         </Routes>
       </main>
