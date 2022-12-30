@@ -5,16 +5,13 @@ import {  useLocation, useNavigate } from 'react-router-dom';
 import './AdminLogin.css'
 import { auth } from '../../firebase.init';
 
-
-
-
 const AdminLogin = () => {
 
   const emailRef = useRef('');
   const passwordRef = useRef('');
   const location = useLocation();
   let from = location.state?.from?.pathname || '/admin-dashboard';
-  const navigat = useNavigate('')
+  const navigate = useNavigate('')
 
   // Sing In with email and password
   const [
@@ -38,14 +35,9 @@ const AdminLogin = () => {
   if(loading){
     return <Spin/>
   }
-  
   if(user){
-    navigat(from, {replace: true});
+    navigate(from, {replace: true});
   }
-
-  
-
-    
 
     return (
         <div  className='h-screen xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto'>

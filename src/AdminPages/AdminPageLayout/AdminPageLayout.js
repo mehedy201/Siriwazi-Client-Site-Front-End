@@ -18,7 +18,6 @@ const AdminPageLayout = () => {
       const items = [
         getItem('Dashboard', 'dashboard', <HomeOutlined />),
         getItem('Hero Section', '2', <AppstoreOutlined />, [
-          getItem('Hero Content', 'hero-content'),
           getItem('Edit Hero Content', 'edit-hero-content'),
         ]),
        

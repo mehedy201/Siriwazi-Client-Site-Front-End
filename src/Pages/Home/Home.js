@@ -5,11 +5,18 @@ import { BsPlusLg } from 'react-icons/bs';
 import { BsSearch } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { Checkbox } from 'antd';
+import HeroContent from './HeroContent';
 
 
 
 const Home = () => {
   const [termsCondition, setTermsCondition] = useState(false);
+
+  const [data, setData] = useState([])  
+
+    fetch('http://localhost:5000/heroContent')
+        .then(res => res.json())
+        .then(data => setData(data))
 
   const onChange = (e) => {
     setTermsCondition(e.target.checked);
@@ -24,8 +31,11 @@ const Home = () => {
                <img src={heroImage} style={{padding: '10px', height: '350px', width: 'auto'}} className="max-w-sm" alt='postandsearch'/>
               </div>
               <div className='flex-auto mr-12'>
-                <p className="text-4xl font-bold for_font_family">Access information about other people, organizations or products and services in the market</p>
-                <p className="py-6 text-justify">Are you happy with somebody, an organization, or a product/service, share your experience with the world on Siriwazi to promote that person/organization/product. If you are not happy, share your experience so that nobody else will go through what you have experienced. At the end, it all comes to the light, so let us treat each other better</p>
+                <div>
+                  {
+                    data?.map((newData, index) => <HeroContent key={index} newData={newData}/>)
+                  }
+                </div>
                 <div className='flex mt-3'>
                   <div className='mr-4'>
                   {/* <!-- The button to open modal --> */}

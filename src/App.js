@@ -26,6 +26,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminLogin from './Pages/AdminLogin/AdminLogin';
 import RequirAuth from './SheardComponents/RequirAuth/RequirAuth';
+import EditHeroContent from './AdminPages/EditHeroContent/EditHeroContent';
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
             <Route path='manage-organization-post' element={<RequirAuth><ManageOrganizationPost/></RequirAuth>}></Route>
             <Route path='manage-product-sercive-post' element={<RequirAuth><ManageProductServicePost/></RequirAuth>}></Route>
             <Route path='post-sent-admin' element={<RequirAuth><SentPostAdmin/></RequirAuth>}></Route>
+            <Route path='edit-hero-content' element={<RequirAuth><EditHeroContent/></RequirAuth>}></Route>
           </Route>
         </Routes>
       </main>

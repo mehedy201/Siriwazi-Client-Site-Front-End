@@ -40,7 +40,7 @@ const NavigationMenu = () => {
                 </label>
                 <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                   {
-                    user? <button className='btn btn-sm btn-primary' onClick={singOutButton}>Sign Out</button> : <Link to={'/'}>Home</Link>
+                    user? <p className='btn btn-sm btn-primary text-white font-bold pointer' onClick={singOutButton}>Sign Out</p> : <Link to={'/'}>Home</Link>
                   }
                 </ul>
               </div>
