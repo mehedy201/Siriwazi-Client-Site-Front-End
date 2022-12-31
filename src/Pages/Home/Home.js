@@ -14,7 +14,7 @@ const Home = () => {
 
   const [data, setData] = useState([])  
 
-    fetch('http://localhost:5000/heroContent')
+    fetch('https://siriwazi-backend.onrender.com/heroContent')
         .then(res => res.json())
         .then(data => setData(data))
 

@@ -16,7 +16,7 @@ const SinglePage = () => {
 
     const [data, setData ] =useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/personData/${id}`)
+        fetch(`https://siriwazi-backend.onrender.com/personData/${id}`)
             .then(res => res.json())
             .then(data => setData(data))
     },[])

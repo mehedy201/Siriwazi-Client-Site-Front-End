@@ -36,7 +36,7 @@ const OrganizationPostComponent = ({emailSentLink}) => {
         event.preventDefault()
         setLoading(true)
         const data = {organizationName, inputCountryData, inputStateData, inputCityData, discriptionMore, date, time, discribeWithCheck, trueFals, postingTime};
-        fetch('http://localhost:5000/organizationData', {
+        fetch('https://siriwazi-backend.onrender.com/organizationData', {
             method: 'POST',
             headers:{
                 'content-type': 'application/json'

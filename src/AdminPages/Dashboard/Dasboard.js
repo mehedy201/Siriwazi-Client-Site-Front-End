@@ -6,7 +6,7 @@ const Dasboard = () => {
     let loading;
     const [persondData, setPersonData] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/personData')
+        fetch('https://siriwazi-backend.onrender.com/personData')
         .then(res => res.json())
         .then(data => {
             setPersonData(data)
@@ -15,7 +15,7 @@ const Dasboard = () => {
     // Person Data 
     const [organizationData, setOrganizationData] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/organizationData')
+        fetch('https://siriwazi-backend.onrender.com/organizationData')
         .then(res => res.json())
         .then(data => {
             setOrganizationData(data)
@@ -24,7 +24,7 @@ const Dasboard = () => {
     // Person Data 
     const [productService, setProductService] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/product-service')
+        fetch('https://siriwazi-backend.onrender.com/product-service')
         .then(res => res.json())
         .then(data => {
             setProductService(data)

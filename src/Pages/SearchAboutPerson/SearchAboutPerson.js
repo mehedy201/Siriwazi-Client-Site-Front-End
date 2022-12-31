@@ -12,7 +12,7 @@ const SearchAboutPerson = () => {
     const [idFilter, setIdFilter] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/personData')
+        fetch('https://siriwazi-backend.onrender.com/personData')
         .then(res => res.json())
         .then(data => {
             setPersonData(data)

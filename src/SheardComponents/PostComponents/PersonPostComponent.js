@@ -29,7 +29,7 @@ const PersonPostComponent = ({emailSentLink}) => {
         event.preventDefault()
         setLoading(true)
         const data = {identityName, identityNo, personName, discription, discriptionMore, date, time, discribeWithCheck, trueFals, postingTime};
-        fetch('http://localhost:5000/personData', {
+        fetch('https://siriwazi-backend.onrender.com/personData', {
             method: 'POST',
             headers:{
                 'content-type': 'application/json'

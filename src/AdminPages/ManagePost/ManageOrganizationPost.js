@@ -25,7 +25,7 @@ const ManageOrganizationPost = () => {
     const [filter4 , setFilter4] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/organizationData')
+        fetch('https://siriwazi-backend.onrender.com/organizationData')
         .then(res => res.json())
         .then(data => {
             setOrganizationData(data)
@@ -38,7 +38,7 @@ const ManageOrganizationPost = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure to Delete');
         if(proceed){
-            const url = `http://localhost:5000/organizationData/${id}`;
+            const url = `https://siriwazi-backend.onrender.com/organizationData/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

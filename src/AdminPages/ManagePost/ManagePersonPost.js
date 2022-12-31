@@ -11,7 +11,7 @@ const ManagePersonPost = () => {
     const [idFilter, setIdFilter] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/personData')
+        fetch('https://siriwazi-backend.onrender.com/personData')
         .then(res => res.json())
         .then(data => {
             setPersonData(data)
@@ -23,7 +23,7 @@ const ManagePersonPost = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure to Delete');
         if(proceed){
-            const url = `http://localhost:5000/personData/${id}`;
+            const url = `https://siriwazi-backend.onrender.com/personData/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

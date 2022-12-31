@@ -18,7 +18,7 @@ const SinglePageProductService = () => {
 
     const [data, setData ] =useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/product-service/${id}`)
+        fetch(`https://siriwazi-backend.onrender.com/product-service/${id}`)
             .then(res => res.json())
             .then(data => setData(data))
     },[])

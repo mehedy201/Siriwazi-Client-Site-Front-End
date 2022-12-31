@@ -23,7 +23,7 @@ const SearchAboutOrganization = () => {
     const [filter4 , setFilter4] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/organizationData')
+        fetch('https://siriwazi-backend.onrender.com/organizationData')
         .then(res => res.json())
         .then(data => {
             setOrganizationData(data)
