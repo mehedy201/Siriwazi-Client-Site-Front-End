@@ -3,8 +3,16 @@ import TextArea from 'antd/es/input/TextArea';
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
+import { Country }  from 'country-state-city';
 
 const PersonPostComponent = ({emailSentLink}) => {
+
+    // Phone No Code Handle _____________________________
+    const allCountry = Country.getAllCountries();
+
+    const [phoneCode, setPhoneCode] = useState('')
+
+
     // Input Select Phone or Other------------------------
     const [identityName, setIdentityName] = useState('')
     const [identityNo, setIdentityNo] = useState('')
@@ -45,6 +53,10 @@ const PersonPostComponent = ({emailSentLink}) => {
 
 
 
+    
+
+
+
     return (
         <div className='mb-12 xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto md:p-12 shadow'>
                 <form onSubmit={handleSubmit} className='p-6 md:p-12 shadow'>
@@ -73,7 +85,27 @@ const PersonPostComponent = ({emailSentLink}) => {
                         </div>
                         <div className='flex-1'>
                             <p  className='font-bold mb-1 mt-2'>{identityName} {identityName? <span>No: <span className='text-red-600'>*</span></span> : ''}</p>
-                            {identityName? <Input size='large' className='capitalize' onChange={e => setIdentityNo(e.target.value)} placeholder={`Type ${identityName} No:`} required /> : ''}
+                            {
+                                identityName === 'Phone/Mobile'? 
+                                <div className='flex'>
+                                    <Select
+                                        size='large'
+                                        placeholder='+00'
+                                        style={{
+                                          width: 120,
+                                        }}
+                                        onChange={e => setPhoneCode(e)}
+                                        options={allCountry.map(country => {
+                                            let removePlus = country.phonecode.replace('+', ' ')
+                                            let addPlus = '+' + removePlus
+                                            return { value: addPlus, label: addPlus,}
+                                        })}
+                                    />
+                                    <Input size='large' className='capitalize' onChange={e => setIdentityNo(phoneCode + ' ' + e.target.value)} placeholder={`Type ${identityName} No:`} required />
+                                </div> :
+                                identityName? <Input size='large' className='capitalize' onChange={e => setIdentityNo(e.target.value)} placeholder={`Type ${identityName} No:`} required /> : ''
+                            }
+                            {/* {identityName? <Input size='large' className='capitalize' onChange={e => setIdentityNo(e.target.value)} placeholder={`Type ${identityName} No:`} required /> : ''} */}
                         </div>
                     </div>
                         <p className='font-bold mb-1 mt-2'>Describe the person using a maximum of three words <span className='text-red-600'>*</span></p>
