@@ -30,11 +30,11 @@ const PersonCard = ({data, handleDelete}) => {
             <div className='md:flex justify-between'>
                 <div>
                     <div className='flex'>
-                        <p className='font-bold text-xl mr-4'>{data.personName}</p>
+                        <p className='font-bold text-xl mr-4'>{data.identityName}: {data.identityNo}</p>
                         <span className='text-sm px-2  bg-slate-50'>{timeAgo.format(postingTime - 60 * 1000)}</span>
                     </div>
                     {
-                        data?.discription? <p className='mb-2'>{data.discription.slice(0, 50)}....</p> : <p className='mb-2'>{data?.discriptionMore?.slice(0, 50)}....</p>
+                        data?.discriptionMore && <p className='mb-2'>{data.discriptionMore.slice(0, 50)}....</p>
                     }
                     <span className='bg-[#EE4B2B] text-sm font-semibold px-4 mt-2 py-1 rounded-lg inline'>{trueFals}</span>
                     </div>

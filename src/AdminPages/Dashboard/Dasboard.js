@@ -31,7 +31,7 @@ const Dasboard = () => {
         })
     }, [])
     return (
-        <div className='h-screen pr-2'>
+        <div className='h-screen pr-2 mt-4'>
             <div className='md:grid grid-cols-3 gap-4'>
                 <div className='bg-[#8f0909] p-3'>
                     <p className='for_font_family text-white font-bold text-xl border-b'>Total Post About Person</p>

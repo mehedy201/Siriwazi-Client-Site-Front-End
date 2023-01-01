@@ -34,7 +34,7 @@ const OrganizationCard = ({data, handleDelete}) => {
                         }
                     </div>
                     {
-                        data?.discription? <p className='mb-2'>{data.discription.slice(0, 50)}....</p> : <p className='mb-2'>{data?.discriptionMore?.slice(0, 50)}....</p>
+                        data?.discriptionMore && <p className='mb-2'>{data.discriptionMore.slice(0, 50)}....</p>
                     }
                     <span className='bg-[#EE4B2B] text-sm font-semibold px-4 mt-2 py-1 rounded-lg inline'>{trueFals}</span>
                 </div>

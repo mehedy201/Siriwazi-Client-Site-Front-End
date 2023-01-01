@@ -28,30 +28,30 @@ const SinglePage = () => {
         <div className='py-4 bg-[#2eab27] border-t-2 border-white-500'>
             <div className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto'>
                 <div className='py-12'>
-                    <p className='text-white font-bold text-4xl for_font_family'>Full Details About <span className='text-[#e8d500]'>{data.personName}</span></p>
+                    <p className='text-white font-bold text-4xl for_font_family'>Full Details About Person</p>
                     <div className='w-100 bg-white md:w-1/2 mt-2' style={{height: '1px'}}></div>
                 </div>
             </div>
         </div> 
         <div className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto my-8'>
             <div className='md:flex sm:flex justify-between'>
-            <p className='text-2xl font-bold'>Person Name: {data.personName}</p> 
+                {
+                    data?.identityName? 
+                        <div className='flex items-center'>
+                            {
+                                data?.identityName? <p className='text-2xl text-slate-500 font-semibold mr-2 mb-4'>{data.identityName} No:</p> : ''
+                            }
+                            {
+                                data?.identityNo? <p className='text-2xl font-semibold mb-4'>{data.identityNo}</p> : ''
+                            }
+                        </div> : ''
+                }
                 {
                     data?.postingTime? <span className='text-sm px-2 py-1 m-0 bg-slate-50'>{timeAgo.format(data.postingTime - 60 * 1000)}</span> : ''
                 }
             </div>
             {/* For Person Section ______________________________________________________________ */}
-            {
-                data?.identityName? 
-                    <div className='flex items-center'>
-                        {
-                            data?.identityName? <p className='text-sm font-semibold mr-2 mb-2'>{data.identityName} No:</p> : ''
-                        }
-                        {
-                            data?.identityNo? <p className='text-sm font-semibold mb-2'>{data.identityNo}</p> : ''
-                        }
-                    </div> : ''
-            }
+            
             {/* ______________________________ */}
             {
                 data?.trueFals === 'Most likely not true' && <span className='font-semibold py-0.5 px-4 border border-red-700'>{data?.trueFals}</span>
@@ -71,14 +71,6 @@ const SinglePage = () => {
                     data.discribeWithCheck.map((check, index) => <span key={index} className='border pt-0.5 pb-1 px-4 mr-2 rounded-lg'>{check}</span>)
                 : ''
             }
-            {/* ________________________________  */}
-            <p className='text-xl font-semibold mt-4'>Details About {data.personName}</p>
-            {/* ________________________________  */}
-            {
-                data?.discription? <p>{data.discription}</p>
-                : data?.discriptionMore? <p>{data.discriptionMore}</p>
-                : ''
-            }
             {/* ______________________________  */}
             {
                 data?.date && <p className='font-semibold mb-1 mt-4'>Time of Occurrence</p>
@@ -90,7 +82,7 @@ const SinglePage = () => {
                 data?.time && <div><span className='font-semibold mr-2'>Time: </span><span>{data.time}</span></div>
             }
             {/* ______________________________  */}
-            <p className='text-xl font-semibold mt-4'>Details About More {data.personName}</p>
+            <p className='text-xl font-semibold mt-4'>Details About</p>
             {/* ________________________________  */}
             {
                 data?.discriptionMore? <p>{data.discriptionMore}</p> : 'No Data'

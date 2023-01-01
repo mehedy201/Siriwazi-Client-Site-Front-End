@@ -58,8 +58,10 @@ function App() {
           <Route path='/post-sent' element={<PostSent/>}></Route>
           {/* Admin Pages _____________________________________________________________________________ */}
           <Route path='/admin' element={<AdminLogin/>}></Route>
-          <Route path='/admin-dashboard' element={<RequirAuth><AdminPageLayout/></RequirAuth>}>
-            <Route index element={<RequirAuth><Dasboard/></RequirAuth>}></Route>
+          <Route path='/admin-dashboard' element={<AdminPageLayout/>}>
+          {/* <Route path='/admin-dashboard' element={<RequirAuth><AdminPageLayout/></RequirAuth>}> */}
+            {/* <Route index element={<RequirAuth><Dasboard/></RequirAuth>}></Route> */}
+            <Route index element={<Dasboard/>}></Route>
             <Route path='dashboard' element={<RequirAuth><Dasboard/></RequirAuth>}></Route>
             <Route path='create-person-post' element={<RequirAuth><PersonPost/></RequirAuth>}></Route>
             <Route path='create-organization-post' element={<RequirAuth><OrganizationPost/></RequirAuth>}></Route>

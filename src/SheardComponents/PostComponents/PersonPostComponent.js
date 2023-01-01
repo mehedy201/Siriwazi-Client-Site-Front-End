@@ -8,8 +8,6 @@ const PersonPostComponent = ({emailSentLink}) => {
     // Input Select Phone or Other------------------------
     const [identityName, setIdentityName] = useState('')
     const [identityNo, setIdentityNo] = useState('')
-    const [personName, setPersonName] = useState('')
-    const [discription, setDiscription] = useState('')
     const [discriptionMore, setDiscriptionMore] = useState('')
     const [date, setDate] = useState([])
     const [time, setTime] = useState([])
@@ -28,7 +26,7 @@ const PersonPostComponent = ({emailSentLink}) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         setLoading(true)
-        const data = {identityName, identityNo, personName, discription, discriptionMore, date, time, discribeWithCheck, trueFals, postingTime};
+        const data = {identityName, identityNo, discriptionMore, date, time, discribeWithCheck, trueFals, postingTime};
         fetch('https://siriwazi-backend.onrender.com/personData', {
             method: 'POST',
             headers:{
@@ -44,6 +42,9 @@ const PersonPostComponent = ({emailSentLink}) => {
             navigate(emailSentLink)
         })
     }
+
+
+
     return (
         <div className='mb-12 xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto md:p-12 shadow'>
                 <form onSubmit={handleSubmit} className='p-6 md:p-12 shadow'>
@@ -75,22 +76,6 @@ const PersonPostComponent = ({emailSentLink}) => {
                             {identityName? <Input size='large' className='capitalize' onChange={e => setIdentityNo(e.target.value)} placeholder={`Type ${identityName} No:`} required /> : ''}
                         </div>
                     </div>
-                        {/* Post Title ----------------------------- */}
-                        <p className='font-bold mb-1 mt-2'>Person Name <span className='text-red-600'>*</span></p>
-                        <Input className='font-bold' onChange={e => setPersonName(e.target.value)} size='large' placeholder='Title...' required />
-                        {/* Discribe About Person ------------ */}
-                        <p className='font-bold mb-1 mt-2'>Describe the person <span className='text-red-600'>*</span></p>
-                        <TextArea
-                            showCount
-                            maxLength={400}
-                            style={{
-                              height: 120,
-                              marginBottom: 24,
-                            }}
-                            onChange={e => setDiscription(e.target.value)}
-                            placeholder="Right Here.........."
-                            required
-                        />
                         <p className='font-bold mb-1 mt-2'>Describe the person using a maximum of three words <span className='text-red-600'>*</span></p>
                         <Checkbox.Group
                             style={{
@@ -98,33 +83,37 @@ const PersonPostComponent = ({emailSentLink}) => {
                             }}
                             id='checkBoxGroup'
                             onChange={e => {
-                                setDiscribeWithCheck(e)                            
+                                setDiscribeWithCheck(e)                                      
                             }}
                             required
                             >
-                            <div className='grid md:grid-cols-5 sm:grid-cols-3 gap-4'>
-                                <Checkbox className='checkBoxInput pl-2' value="Con Man/Woman">Con Man/Woman</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Stingy/mean">Stingy/mean</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Player/Heart Breaker">Player/Heart Breaker</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Gold Digger">Gold Digger</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Corrupt">Corrupt</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Dishonest">Dishonest</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Thief">Thief</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Violent">Violent</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Does not Pay Debts">Does not Pay Debts</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Horrible Boss">Horrible Boss</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Sexual Pervert">Sexual Pervert</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Truthful">Truthful</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Generous">Generous</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Loyal">Loyal</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Humble">Humble</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Professional">Professional</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Honest">Honest</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Dependable">Dependable</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Disciplined">Disciplined</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Pays Debts">Pays Debts</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Best Boss Ever">Best Boss Ever</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Romantic">Romantic</Checkbox>
+                            <div style={{width: '100%'}} className='flex'>
+                                <div className='flex-1 grid grid-cols-1 gap-2'>
+                                    <Checkbox className='check pl-2' value="Con Man/Woman">Con Man/Woman</Checkbox>
+                                    <Checkbox className='check' value="Stingy/mean">Stingy/mean</Checkbox>
+                                    <Checkbox className='check' value="Player/Heart Breaker">Player/Heart Breaker</Checkbox>
+                                    <Checkbox className='check' value="Gold Digger">Gold Digger</Checkbox>
+                                    <Checkbox className='check' value="Corrupt">Corrupt</Checkbox>
+                                    <Checkbox className='check' value="Dishonest">Dishonest</Checkbox>
+                                    <Checkbox className='check' value="Thief">Thief</Checkbox>
+                                    <Checkbox className='check' value="Violent">Violent</Checkbox>
+                                    <Checkbox className='check' value="Does not Pay Debts">Does not Pay Debts</Checkbox>
+                                    <Checkbox className='check' value="Horrible Boss">Horrible Boss</Checkbox>
+                                    <Checkbox className='check' value="Sexual Pervert">Sexual Pervert</Checkbox> 
+                                </div>
+                                <div className='flex-1 grid grid-cols-1 gap-2'>
+                                    <Checkbox className='check pl-2' value="Truthful">Truthful</Checkbox>
+                                    <Checkbox className='check' value="Generous">Generous</Checkbox>
+                                    <Checkbox className='check' value="Loyal">Loyal</Checkbox>
+                                    <Checkbox className='check' value="Humble">Humble</Checkbox>
+                                    <Checkbox className='check' value="Professional">Professional</Checkbox>
+                                    <Checkbox className='check' value="Honest">Honest</Checkbox>
+                                    <Checkbox className='check' value="Dependable">Dependable</Checkbox>
+                                    <Checkbox className='check' value="Disciplined">Disciplined</Checkbox>
+                                    <Checkbox className='check' value="Pays Debts">Pays Debts</Checkbox>
+                                    <Checkbox className='check' value="Best Boss Ever">Best Boss Ever</Checkbox>
+                                    <Checkbox className='check' value="Romantic">Romantic</Checkbox>
+                                </div>
                             </div>
                         </Checkbox.Group>
                         {/* Discribe more optional ---------------------------- */}
@@ -165,8 +154,6 @@ const PersonPostComponent = ({emailSentLink}) => {
                             }} />
                             <TimePicker onChange={(time, timeString) => setTime(timeString)} defaultValue={dayjs('00:00:00', 'HH:mm:ss')} />
                         </div>
-                        <p className='font-bold mb-1 mt-2'>The value of this input will depend on your form fill</p>
-                        <Input className='mb-2' size='large' value={trueFals? trueFals: ''} disabled readOnly/>
                         {
                             loading === true && <div className=''><Spin size="large"/></div>
                         }

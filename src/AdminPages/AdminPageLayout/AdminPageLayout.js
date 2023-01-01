@@ -2,10 +2,15 @@ import React from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { GrUserAdmin } from 'react-icons/gr';
 import { AppstoreOutlined, HomeOutlined, SnippetsOutlined, PlusOutlined } from '@ant-design/icons';
-import { Menu } from 'antd';
+import { Menu, Spin } from 'antd';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../firebase.init';
+import { signOut } from 'firebase/auth';
 
 
 const AdminPageLayout = () => {
+
+  
     function getItem(label, key, icon, children, type) {
         return {
           key,
@@ -37,11 +42,28 @@ const AdminPageLayout = () => {
         const onClick = (e) => {
           navigate(e.key);
         };
+
+        
+      const [user, loading] = useAuthState(auth);
+      if(loading) {
+        return <Spin/>
+      }
+
+      const singOutButton = () => {
+        signOut(auth);
+        navigate('/admin')
+      }
+
     return (
         <>
         <div className='bg-[#f2f2f2] py-3'>
             <div className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto'>
-                <p className='font-bold text-2xl for_font_family flex items-center'><GrUserAdmin className='mr-2'/> Siriwazi Admin Dashboard</p>
+                <div className='flex justify-between'>
+                <p className='font-bold text-2xl for_font_family flex items-center'><GrUserAdmin className='mr-2'/> Siriwazi Admin Dashboard</p>                    
+                    {
+                      user? <button className='btn btn-sm bg-primary' onClick={singOutButton}>Sign Out</button> : <button className='btn btn-sm bg-primary' onClick={singOutButton}>Sign Out</button>
+                    }
+                </div>
             </div>
         </div>
         <div className='mb-12 '>

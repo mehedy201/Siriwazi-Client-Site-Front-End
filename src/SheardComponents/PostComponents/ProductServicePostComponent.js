@@ -141,17 +141,21 @@ const ProductServicePostComponent = ({senEmailLink}) => {
                             }}
                             required
                             >
-                            <div className='grid md:grid-cols-5 sm:grid-cols-3 gap-4'>
-                                <Checkbox className='checkBoxInput pl-2' value="Too expensive">Too expensive</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Didn’t meet my expectations">Didn’t meet my expectations</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Horrible product/service">Horrible product/service</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Limiting features">Limiting features</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Same old, nothing new">Same old, nothing new</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Fairly priced">Fairly priced</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Exceeded my expectations">Exceeded my expectations</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Great product/service">Great product/service</Checkbox>
-                                <Checkbox className='checkBoxInput' value="New and enhanced features">New and enhanced features</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Inventive and relevant">Inventive and relevant</Checkbox>
+                            <div style={{width: '100%'}} className='flex'>
+                                <div  className='flex-1 grid grid-cols-1 gap-2'>
+                                    <Checkbox className='checkBoxInput pl-2' value="Too expensive">Too expensive</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Didn’t meet my expectations">Didn’t meet my expectations</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Horrible product/service">Horrible product/service</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Limiting features">Limiting features</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Same old, nothing new">Same old, nothing new</Checkbox>
+                                </div>
+                                <div  className='flex-1 grid grid-cols-1 gap-2'>
+                                    <Checkbox className='checkBoxInput pl-2' value="Fairly priced">Fairly priced</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Exceeded my expectations">Exceeded my expectations</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Great product/service">Great product/service</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="New and enhanced features">New and enhanced features</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Inventive and relevant">Inventive and relevant</Checkbox>
+                                </div>
                             </div>
                         </Checkbox.Group>
                         <p className='font-bold mb-1 mt-6'>Describe the person More Details (Optional)</p>
@@ -191,8 +195,6 @@ const ProductServicePostComponent = ({senEmailLink}) => {
                             }} />
                             <TimePicker onChange={(time, timeString) => setTime(timeString)} defaultValue={dayjs('00:00:00', 'HH:mm:ss')} />
                         </div>
-                        <p className='font-bold mb-1 mt-2'>The value of this input will depend on your form fill</p>
-                        <Input size='large' value={trueFals? trueFals: ''} disabled readOnly/>
                         {
                             loading === true && <div className=''><Spin size="large"/></div>
                         }

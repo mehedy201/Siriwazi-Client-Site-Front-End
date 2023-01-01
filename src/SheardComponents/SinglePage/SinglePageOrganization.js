@@ -26,16 +26,12 @@ const SinglePageOrganization = () => {
         <div className='py-4 bg-[#2eab27] border-t-2 border-white-500'>
             <div className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto'>
                 <div className='py-12'>
-                    <p className='text-white font-bold text-4xl for_font_family'>Full Details About <span className='text-[#e8d500]'>{data.organizationName}</span></p>
+                    <p className='text-white font-bold text-4xl for_font_family'>Full Details About {data.organizationName}</p>
                     <div className='w-100 bg-white md:w-1/2 mt-2' style={{height: '1px'}}></div>
                 </div>
             </div>
         </div> 
         <div className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto my-8'>
-            <div className='py-8 for_shadow_css mb-4 p-4 rounded-lg'>
-                <p className='font-bold text-4xl for_font_family'>Full Details About an Organization</p>
-                <div className='w-100 bg-[#d4d4d4] md:w-1/2 mt-2' style={{height: '1px'}}></div>
-            </div>
             <div className='md:flex sm:flex justify-between'>
                 <p className='text-2xl font-bold'>Organization Name: {data.organizationName}</p>
                 {
@@ -64,14 +60,6 @@ const SinglePageOrganization = () => {
             {
                 data?.discribeWithCheck? 
                     data.discribeWithCheck.map((check, index) => <span key={index} className='border pt-0.5 pb-1 px-4 mr-2 rounded-lg'>{check}</span>)
-                : ''
-            }
-            {/* ________________________________  */}
-            <p className='text-xl font-semibold mt-4'>Details About {data.organizationName}</p> 
-            {/* ________________________________  */}
-            {
-                data?.discription? <p>{data.discription}</p>
-                : data?.discriptionMore? <p>{data.discriptionMore}</p>
                 : ''
             }
             {/* ______________________________  */}

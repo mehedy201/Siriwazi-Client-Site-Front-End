@@ -135,21 +135,25 @@ const OrganizationPostComponent = ({emailSentLink}) => {
                             }}
                             required
                             >
-                            <div className='grid md:grid-cols-5 sm:grid-cols-3 gap-4'>
-                                <Checkbox className='checkBoxInput pl-2' value="Corruption Zone">Corruption Zone</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Rude Staff">Rude Staff</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Unprofessional Staff">Unprofessional Staff</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Horrible Employer">Horrible Employer</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Over Priced Products/Service">Over Priced Products/Service</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Unreliable">Unreliable</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Horrible Product/Service">Horrible Product/Service</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Professional Staff">Professional Staff</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Honest Staff">Honest Staff</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Patient Staff">Patient Staff</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Friendly Staff">Friendly Staff</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Great Employer">Great Employer</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Fairly Priced products/Service">Fairly Priced products/Service</Checkbox>
-                                <Checkbox className='checkBoxInput' value="Great Product/Service">Great Product/Service</Checkbox>
+                            <div style={{width: '100%'}} className='flex'>
+                                <div className='flex-1 grid grid-cols-1 gap-2'>
+                                    <Checkbox className='checkBoxInput pl-2' value="Corruption Zone">Corruption Zone</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Rude Staff">Rude Staff</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Unprofessional Staff">Unprofessional Staff</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Horrible Employer">Horrible Employer</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Over Priced Products/Service">Over Priced Products/Service</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Unreliable">Unreliable</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Horrible Product/Service">Horrible Product/Service</Checkbox>
+                                </div>
+                                <div className='flex-1 grid grid-cols-1 gap-2'>
+                                    <Checkbox className='checkBoxInput pl-2' value="Professional Staff">Professional Staff</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Honest Staff">Honest Staff</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Patient Staff">Patient Staff</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Friendly Staff">Friendly Staff</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Great Employer">Great Employer</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Fairly Priced products/Service">Fairly Priced products/Service</Checkbox>
+                                    <Checkbox className='checkBoxInput' value="Great Product/Service">Great Product/Service</Checkbox>
+                                </div>
                             </div>
                         </Checkbox.Group>
                         <p className='font-bold mb-1 mt-6'>Describe the person More Details (Optional)</p>
@@ -189,8 +193,6 @@ const OrganizationPostComponent = ({emailSentLink}) => {
                             }} />
                             <TimePicker onChange={(time, timeString) => setTime(timeString)} defaultValue={dayjs('00:00:00', 'HH:mm:ss')} />
                         </div>
-                        <p className='font-bold mb-1 mt-2'>The value of this input will depend on your form fill</p>
-                        <Input size='large' value={trueFals? trueFals: ''} disabled readOnly/>
                         {
                             loading === true && <div className=''><Spin size="large"/></div>
                         }
