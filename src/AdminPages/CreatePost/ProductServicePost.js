@@ -3,7 +3,7 @@ import ProductServicePostComponent from '../../SheardComponents/PostComponents/P
 
 const ProductServicePost = () => {
 
-    const emailSentLink = '/admin/post-sent-admin'
+    const emailSentLink = '/admin-dashboard/post-sent-admin'
 
     return (
         <div>

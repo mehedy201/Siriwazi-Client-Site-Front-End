@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import TimeAgo from 'javascript-time-ago'
-// // English Time______________________________
-import en from 'javascript-time-ago/locale/en'
-TimeAgo.addLocale(en);
+
 
 const SinglePageProductService = () => {
     const {id} = useParams('')
-    // Create formatter (English)._______________________________
-    const timeAgo = new TimeAgo('en-US')
     const [data, setData ] =useState([])
     useEffect(() => {
         fetch(`https://siriwazi-backend.onrender.com/product-service/${id}`)
@@ -28,9 +23,14 @@ const SinglePageProductService = () => {
         <div className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto my-8'>
             <div className='md:flex sm:flex justify-between'>
                 <p className='text-2xl font-bold'>Product/Service Name: {data.productServiceName}</p>
-                {
-                    data?.postingTime && <span className='text-sm px-2 py-1 m-0 bg-slate-50'>{timeAgo.format(data.postingTime - 60 * 1000)}</span>
-                }
+                <div className='mb-2'>
+                    {
+                        data?.postingDate && <span className='font-bold mr-3'><span className='text-slate-500'>Posted Date: </span> {data.postingDate}</span>
+                    }
+                    {
+                        data?.postingTime && <span className='font-bold'><span className='text-slate-500'>Posted Time: </span>{data.postingTime}</span>
+                    }
+                </div>
             </div>
             <div className='mb-2'>
                 <span className='font-bold text-sm'>Address: {data?.inputCityData}, {data?.inputStateData}, {data?.inputCountryData}</span>

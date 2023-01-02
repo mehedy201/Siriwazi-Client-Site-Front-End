@@ -22,7 +22,10 @@ const PersonPostComponent = ({emailSentLink}) => {
     let defaultValue = 'Most likely not true'
     const [trueFals, setTrueFalse] = useState(defaultValue);
     // Posting Time___________________________________________
-    const postingTime = Date.now();
+    // const postingTime = Date.now();
+    const postingDate = new Date().toLocaleDateString()
+    var nowTime = new Date();
+    let postingTime = nowTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
 
     
     const [loading, setLoading] = useState(false)
@@ -30,7 +33,7 @@ const PersonPostComponent = ({emailSentLink}) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         setLoading(true)
-        const data = {identityName, identityNo, discriptionMore, date, time, place, discribeWithCheck, trueFals, postingTime};
+        const data = {identityName, identityNo, discriptionMore, date, time, place, discribeWithCheck, postingTime, trueFals, postingDate};
         fetch('https://siriwazi-backend.onrender.com/personData', {
             method: 'POST',
             headers:{

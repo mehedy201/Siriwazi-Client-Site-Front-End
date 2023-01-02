@@ -6,7 +6,7 @@ const SentPostAdmin = () => {
     const navigate = useNavigate()
 
     const handleNavigate = () => {
-        navigate('/admin')
+        navigate('/admin-dashboard')
     }
     return (
         <div className='md:my-14 py-4 flex justify-center'>

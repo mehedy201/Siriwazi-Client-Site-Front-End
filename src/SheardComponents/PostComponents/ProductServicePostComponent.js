@@ -30,7 +30,9 @@ const ProductServicePostComponent = ({senEmailLink}) => {
     const allCountry = Country.getAllCountries();
 
     // Posting Time___________________________________________
-    const postingTime = Date.now();
+    const postingDate = new Date().toLocaleDateString()
+    var nowTime = new Date();
+    let postingTime = nowTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
 
     // Handle Submit Button____________________________________________________________________
     const [loading, setLoading] = useState(false)
@@ -39,7 +41,7 @@ const ProductServicePostComponent = ({senEmailLink}) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         setLoading(true)
-        const data = {productServiceName, inputCountryData, place, inputStateData, inputCityData, discriptionMore, date, time, discribeWithCheck, trueFals, companyOrganizationName, postingTime};
+        const data = {productServiceName, inputCountryData, place, inputStateData, inputCityData, discriptionMore, date, time, postingDate, discribeWithCheck, trueFals, companyOrganizationName, postingTime};
         fetch('https://siriwazi-backend.onrender.com/product-service', {
             method: 'POST',
             headers:{

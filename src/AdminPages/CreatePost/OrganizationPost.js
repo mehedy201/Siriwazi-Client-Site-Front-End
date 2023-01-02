@@ -3,7 +3,7 @@ import OrganizationPostComponent from '../../SheardComponents/PostComponents/Org
 
 const OrganizationPost = () => {
      
-     const emailSentLink = '/admin/post-sent-admin'
+     const emailSentLink = '/admin-dashboard/post-sent-admin'
     return (
         <div>
             <OrganizationPostComponent emailSentLink={emailSentLink}/>

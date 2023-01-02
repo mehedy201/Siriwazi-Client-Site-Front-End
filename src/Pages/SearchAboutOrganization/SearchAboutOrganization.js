@@ -11,6 +11,7 @@ const SearchAboutOrganization = () => {
     const [code, setCode] = useState('')
     const [stateData, setStateData] = useState([]);
     const [cityData, setCityData] = useState([]);
+    const [searchSummary, setSearchSummary] = useState('')
 
     // Get All Country List _____________________
     const allCountry = Country.getAllCountries();
@@ -47,6 +48,7 @@ const SearchAboutOrganization = () => {
                     <div className='flex-1 mr-4'>
                         <p className='font-bold mb-1 mt-2'>Search by Organization Name</p>
                         <Input size='large' onChange={e => {
+                            setSearchSummary(e.target.value)
                             if(filter3.length > 0 ){
                                 const filter = filter3.filter(data => data.organizationName.toLowerCase().includes(e.target.value.toLowerCase()))
                                 setOrganizationData(filter)
@@ -151,7 +153,10 @@ const SearchAboutOrganization = () => {
                 </div>
             </div> 
             <div className='mb-12 xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto mt-2'>
-                <div className='mb-1'><span className='font-bold text-green-700'>Result</span>: <span className='font-bold border px-2'>{organizationData.length}</span></div>
+                <div className='flex'>
+                    <div className='mb-1'><span className='font-bold text-green-700'>Result</span>: <span className='font-bold border px-2'>{organizationData.length}</span></div>
+                    <div>{searchSummary && <p className='font-bold border-b'>Search Summary: {searchSummary}</p>}</div>
+                </div>
                 <div style={{height: '30rem'}} className='overflow-auto p-6 border'>
                     {
                        organizationData.length !== 0 ? organizationData.map(data => <OrganizationCard key={data._id} data={data} />) : <div className='mt-12'><Empty/></div>

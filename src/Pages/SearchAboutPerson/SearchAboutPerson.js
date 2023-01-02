@@ -10,6 +10,7 @@ const SearchAboutPerson = () => {
     const [personData, setPersonData] = useState([])
     const [forFilter, setFilter] = useState([]);
     const [idFilter, setIdFilter] = useState([])
+    const [searchSummary, setSearchSummary] = useState('')
 
     useEffect(() => {
         fetch('https://siriwazi-backend.onrender.com/personData')
@@ -62,6 +63,7 @@ const SearchAboutPerson = () => {
                         {identityName? <Input 
                                             size='large' 
                                             onChange={e => {
+                                                setSearchSummary(e.target.value)
                                                 const filter = idFilter.filter(data => data.identityNo.includes(e.target.value))
                                                 setPersonData(filter)
                                             }} 
@@ -70,7 +72,10 @@ const SearchAboutPerson = () => {
                 </div>
             </div>
             <div className='mb-12 xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto mt-2'>
-                <div className='mb-1'><span className='font-bold text-green-700'>Result</span>: <span className='font-bold border px-2'>{personData.length}</span></div>
+                <div className='flex'>
+                    <div className='mb-1 mr-4'><span className='font-bold text-green-700'>Result</span>: <span className='font-bold border px-2'>{personData.length}</span></div>
+                    <div>{searchSummary && <p className='font-bold border-b'>Search Summary: {searchSummary}</p>}</div>
+                </div>
                 <div style={{height: '30rem'}} className='overflow-auto p-6 border'>
                     {
                        personData.length !== 0 ? personData.map(data => <PersonCard key={data._id} data={data} />) : <div className='mt-12'><Empty/></div>

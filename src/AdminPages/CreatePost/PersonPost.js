@@ -5,7 +5,7 @@ import PersonPostComponent from '../../SheardComponents/PostComponents/PersonPos
 
 const PersonPost = () => {
      
-     const emailSentLink = '/admin/post-sent-admin'
+     const emailSentLink = '/admin-dashboard/post-sent-admin'
 
     return (
         <div>

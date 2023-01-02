@@ -28,7 +28,9 @@ const OrganizationPostComponent = ({emailSentLink}) => {
     const allCountry = Country.getAllCountries();
 
     // Posting Time___________________________________________
-    const postingTime = Date.now();
+    const postingDate = new Date().toLocaleDateString()
+    var nowTime = new Date();
+    let postingTime = nowTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
     
     // Handle Submit Button____________________________________________________________________
     const [loading, setLoading] = useState(false)
@@ -36,7 +38,7 @@ const OrganizationPostComponent = ({emailSentLink}) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         setLoading(true)
-        const data = {organizationName, inputCountryData, inputStateData, place, inputCityData, discriptionMore, date, time, discribeWithCheck, trueFals, postingTime};
+        const data = {organizationName, inputCountryData, inputStateData, place, inputCityData, discriptionMore, date, time, discribeWithCheck, trueFals, postingDate, postingTime};
         fetch('https://siriwazi-backend.onrender.com/organizationData', {
             method: 'POST',
             headers:{

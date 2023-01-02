@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './SinglePage.css'
-import TimeAgo from 'javascript-time-ago'
+// import TimeAgo from 'javascript-time-ago'
 // // English Time______________________________
 import en from 'javascript-time-ago/locale/en'
 
-TimeAgo.addLocale(en)
+// TimeAgo.addLocale(en)
 
 const SinglePage = () => {
     const {id} = useParams('')
 
     // Create formatter (English)._______________________________
-    const timeAgo = new TimeAgo('en-US')
+    // const timeAgo = new TimeAgo('en-US')
 
 
     const [data, setData ] =useState([])
@@ -34,22 +34,23 @@ const SinglePage = () => {
             </div>
         </div> 
         <div className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto my-8'>
-            <div className='md:flex sm:flex justify-between'>
-                {
-                    data?.identityName? 
-                        <div className='flex items-center'>
-                            
-                            {
-                                data?.identityName? <p className='text-2xl text-slate-500 font-semibold mr-2 mb-4'>{data.identityName} No:</p> : ''
-                            }
-                            {
-                                data?.identityNo? <p className='text-2xl font-semibold mb-4'>{data.identityNo}</p> : ''
-                            }
-                        </div> : ''
-                }
-                {
-                    data?.postingTime? <span className='text-sm px-2 py-1 m-0 bg-slate-50'>{timeAgo.format(data.postingTime - 60 * 1000)}</span> : ''
-                }
+            <div>
+                <div className='flex'>
+                    {
+                        data?.identityName? <p className='text-2xl text-slate-700 font-semibold mr-2'>{data.identityName} No:</p> : ''
+                    }
+                    {
+                        data?.identityNo? <p className='text-2xl font-semibold'>{data.identityNo}</p> : ''
+                    }
+                </div>
+                <div className='mb-2'>
+                    {
+                        data?.postingDate && <span className='font-bold mr-3'><span className='text-slate-500'>Posted Date: </span> {data.postingDate}</span>
+                    }
+                    {
+                        data?.postingTime && <span className='font-bold'><span className='text-slate-500'>Posted Time: </span>{data.postingTime}</span>
+                    }
+                </div>
             </div>
             {/* For Person Section ______________________________________________________________ */}
             
