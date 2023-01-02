@@ -24,7 +24,7 @@ const Home = () => {
 
 
     return (
-        <div className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto'>
+        <div className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto h-screen flex items-center'>
           <div className="hero my-8">
             <div className="hero-content md:flex flex-row-reverse">
               <div className='flex-auto'>

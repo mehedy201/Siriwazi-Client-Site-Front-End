@@ -16,6 +16,7 @@ const ProductServicePostComponent = ({senEmailLink}) => {
     const [time, setTime] = useState([])
     const [discribeWithCheck, setDiscribeWithCheck] = useState('')
     const [companyOrganizationName, setCompanyOrganizationName] = useState('')
+    const [place, setPlace] = useState('')
 
     // Last True False Value 
     let defaultValue = 'Most likely not true'
@@ -38,7 +39,7 @@ const ProductServicePostComponent = ({senEmailLink}) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         setLoading(true)
-        const data = {productServiceName, inputCountryData, inputStateData, inputCityData, discriptionMore, date, time, discribeWithCheck, trueFals, companyOrganizationName, postingTime};
+        const data = {productServiceName, inputCountryData, place, inputStateData, inputCityData, discriptionMore, date, time, discribeWithCheck, trueFals, companyOrganizationName, postingTime};
         fetch('https://siriwazi-backend.onrender.com/product-service', {
             method: 'POST',
             headers:{
@@ -53,8 +54,8 @@ const ProductServicePostComponent = ({senEmailLink}) => {
         })
     }
     return (
-        <div  className='mb-12 xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto md:p-12 shadow'>
-                <form onSubmit={handleSubmit} className='p-6 md:p-12 shadow'>
+        <div  className='mb-12 xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto md:px-12'>
+                <form onSubmit={handleSubmit} className='p-6 md:p-12'>
                     <p className='font-bold text-2xl for_font_family mb-4'>Create Your Post</p>
                     <div className='w-100 bg-red-200 md:w-1/2 mb-4' style={{height: '1px'}}></div>
                     <p className='font-bold mb-1 mt-2'><span>Product/Service Name <span className='text-red-600'>*</span></span></p>
@@ -158,13 +159,10 @@ const ProductServicePostComponent = ({senEmailLink}) => {
                                 </div>
                             </div>
                         </Checkbox.Group>
-                        <p className='font-bold mb-1 mt-6'>Describe the person More Details (Optional)</p>
-                        <div className='w-100 bg-red-500 md:w-1/2 mt-2' style={{height: '1px'}}></div>
-                        <p>Your information will be verified based on the answers to the optional form below</p>
-                        <p className='font-bold mb-1 mt-2'>Place where the event described took place (Optional)</p>
+                        <p className='font-bold mb-1 mt-6'>Describe an Event that Happened in More Detail (Optional)</p>
                         <TextArea
                             showCount
-                            maxLength={200}
+                            maxLength={500}
                             style={{
                               height: 100,
                               marginBottom: 24,
@@ -181,6 +179,8 @@ const ProductServicePostComponent = ({senEmailLink}) => {
                             }}
                             placeholder="Right Here.........."
                         />
+                        <p className='font-bold mb-1 mt-2'>Where it happend (Optional)</p>
+                        <Input size='large' className='capitalize' onChange={e => setPlace(e.target.value)} maxLength="100" />
                         <p className='font-bold mb-1 mt-2'>Date and Time when it happened (Optional)</p>
                         <div className='flex '>
                             <DatePicker className='mr-2' onChange={(date, dateString) =>{

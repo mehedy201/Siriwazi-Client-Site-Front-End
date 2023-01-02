@@ -73,7 +73,11 @@ const SinglePageOrganization = () => {
                 data?.time && <div><span className='font-semibold mr-2'>Time: </span><span>{data.time}</span></div>
             }
             {/* ______________________________  */}
-            <p className='text-xl font-semibold mt-4'>Details About More {data.organizationName}</p> 
+            <p className='text-xl font-semibold mt-4'>The name of the place where it happened</p>
+            {
+                data?.place && <p>{data.place}</p>
+            }
+            <p className='text-xl font-semibold mt-4'>Details About {data.organizationName}</p> 
             {/* ________________________________  */}
             {
                 data?.discriptionMore ? <p>{data.discriptionMore}</p> : 'No Data'

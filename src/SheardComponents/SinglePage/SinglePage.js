@@ -38,6 +38,7 @@ const SinglePage = () => {
                 {
                     data?.identityName? 
                         <div className='flex items-center'>
+                            
                             {
                                 data?.identityName? <p className='text-2xl text-slate-500 font-semibold mr-2 mb-4'>{data.identityName} No:</p> : ''
                             }
@@ -82,6 +83,10 @@ const SinglePage = () => {
                 data?.time && <div><span className='font-semibold mr-2'>Time: </span><span>{data.time}</span></div>
             }
             {/* ______________________________  */}
+            <p className='text-xl font-semibold mt-4'>The name of the place where it happened</p>
+            {
+                data?.place && <p>{data.place}</p>
+            }
             <p className='text-xl font-semibold mt-4'>Details About</p>
             {/* ________________________________  */}
             {

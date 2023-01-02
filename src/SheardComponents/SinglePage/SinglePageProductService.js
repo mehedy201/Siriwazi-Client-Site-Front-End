@@ -3,19 +3,12 @@ import { useParams } from 'react-router-dom';
 import TimeAgo from 'javascript-time-ago'
 // // English Time______________________________
 import en from 'javascript-time-ago/locale/en'
-
 TimeAgo.addLocale(en);
-
-
-
 
 const SinglePageProductService = () => {
     const {id} = useParams('')
-
     // Create formatter (English)._______________________________
     const timeAgo = new TimeAgo('en-US')
-
-
     const [data, setData ] =useState([])
     useEffect(() => {
         fetch(`https://siriwazi-backend.onrender.com/product-service/${id}`)
@@ -79,6 +72,10 @@ const SinglePageProductService = () => {
                 data?.time && <div><span className='font-semibold mr-2'>Time: </span><span>{data.time}</span></div>
             }
             {/* ______________________________  */}
+            <p className='text-xl font-semibold mt-4'>The name of the place where it happened</p>
+            {
+                data?.place && <p>{data.place}</p>
+            }
             <p className='text-xl font-semibold mt-4'>Details About More {data.productServiceName}</p> 
             {/* ________________________________  */}
             {
