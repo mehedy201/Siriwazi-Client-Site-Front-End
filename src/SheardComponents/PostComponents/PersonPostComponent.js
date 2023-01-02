@@ -107,11 +107,11 @@ const PersonPostComponent = ({emailSentLink}) => {
                                               type='number'
                                               size='large'
                                               onChange={e => setIdentityNo(phoneCode + ' ' + e.target.value)}
+                                              placeholder='Number'
                                               style={{
                                                 width: '70%',
                                               }}
-                                              placeholder="Enter Phone Number"
-                                              pattern="[0-9.]"
+                                            //   pattern="[+0-9.]"
                                             />
                                         </Input.Group>
                                     </div>
