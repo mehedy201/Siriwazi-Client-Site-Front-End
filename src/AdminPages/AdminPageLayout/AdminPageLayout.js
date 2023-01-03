@@ -68,7 +68,7 @@ const AdminPageLayout = () => {
         </div>
         <div className='mb-12 '>
             <div className='flex'>
-                <div className='basis-1/5'>
+                <div className=''>
                 <Menu
                     onClick={onClick}
                     style={{
@@ -79,8 +79,8 @@ const AdminPageLayout = () => {
                     items={items}
                 />
                 </div>
-                <div className='bg-[#fffaf7] basis-4/5'>
-                    <Outlet></Outlet>
+                <div className='grow'>
+                      <Outlet></Outlet>
                 </div>
             </div>
         </div>
