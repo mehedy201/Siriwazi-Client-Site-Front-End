@@ -1,6 +1,6 @@
-import { Checkbox, DatePicker, Input, InputNumber, Select, Spin, TimePicker } from 'antd';
+import { Checkbox, DatePicker, Input, Select, Spin, TimePicker } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 import { Country }  from 'country-state-city';
@@ -9,7 +9,7 @@ import './PersonPostComponent.css'
 const PersonPostComponent = ({emailSentLink}) => {
     // Phone No Code Handle _____________________________
     const allCountry = Country.getAllCountries();
-    const [phoneCode, setPhoneCode] = useState('')
+    const [singleCountry, setSingleCountry] = useState('')
     // Input Select Phone or Other------------------------
     const [identityName, setIdentityName] = useState('')
     const [identityNo, setIdentityNo] = useState('')
@@ -18,6 +18,11 @@ const PersonPostComponent = ({emailSentLink}) => {
     const [time, setTime] = useState([])
     const [discribeWithCheck, setDiscribeWithCheck] = useState('')
     const [place, setPlace] = useState('')
+    // const [count, setCount] = useState([])
+
+ 
+
+
     // Last True False Value 
     let defaultValue = 'Most likely not true'
     const [trueFals, setTrueFalse] = useState(defaultValue);
@@ -33,7 +38,7 @@ const PersonPostComponent = ({emailSentLink}) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         setLoading(true)
-        const data = {identityName, identityNo, discriptionMore, date, time, place, discribeWithCheck, postingTime, trueFals, postingDate};
+        const data = {identityName, identityNo, discriptionMore, date, time, place, discribeWithCheck, postingTime, singleCountry, trueFals, postingDate};
         fetch('https://siriwazi-backend.onrender.com/personData', {
             method: 'POST',
             headers:{
@@ -90,14 +95,12 @@ const PersonPostComponent = ({emailSentLink}) => {
                                               width: '100%',
                                             }}
                                             onChange={e => {
-                                                const value = e.split('=');
-                                                setPhoneCode(value[1])
-                                                console.log(value[1])
+                                                setSingleCountry(e)
                                             }}
                                             options={allCountry.map(country => {
-                                                let removePlus = country.phonecode.replace('+', ' ')
-                                                let addPlus = '+' + removePlus
-                                                return { value: country.name + '=' + addPlus, label: `${country.name}`,}
+                                                // let removePlus = country.phonecode.replace('+', ' ')
+                                                // let addPlus = '+' + removePlus
+                                                return { value: country.name, label: country.name,}
                                             })}
                                         />
                                     </div>
@@ -109,12 +112,12 @@ const PersonPostComponent = ({emailSentLink}) => {
                                               className='remove_arrow_right'
                                               type='number'
                                               size='large'
-                                              onChange={e => setIdentityNo(phoneCode + ' ' + e.target.value)}
+                                            //   onChange={e => setIdentityNo(phoneCode + ' ' + e.target.value)}
+                                              onChange={e => setIdentityNo(e.target.value)}
                                               placeholder='Number'
                                               style={{
                                                 width: '70%',
                                               }}
-                                            //   pattern="[+0-9.]"
                                             />
                                         </Input.Group>
                                     </div>

@@ -1,26 +1,15 @@
 import React from 'react';
-import TimeAgo from 'javascript-time-ago'
-// English Time______________________________
-import en from 'javascript-time-ago/locale/en'
 import { Button } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
-import { FullscreenOutlined } from '@ant-design/icons';
 import { DeleteOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-TimeAgo.addLocale(en);
 
 const PersonCard = ({data, handleDelete}) => {
     const { postingTime, trueFals, _id} = data;
-    // Create formatter (English)._______________________________
-    const timeAgo = new TimeAgo('en-US')
 
     const navigate = useNavigate('')
     const homePageHandle = () => {
         navigate('/')
-    }
-
-    const singlePageView = (id) => {
-        navigate(`/person-details/${id}`)
     }
 
     
@@ -37,7 +26,6 @@ const PersonCard = ({data, handleDelete}) => {
                         }
                     </div>
                     <div>
-                        <Button onClick={() => singlePageView(_id)} style={{width: '150px'}} className='flex items-center inline mb-2 mt-2' icon={<FullscreenOutlined />}>Full Details</Button>
                         {
                             handleDelete? <Button onClick={() => handleDelete(_id)} style={{width: '150px'}} className='flex items-center inline' icon={<DeleteOutlined />}>Delete</Button>  : <Button onClick={homePageHandle} style={{width: '150px'}} className='flex items-center inline' icon={<HomeOutlined />}>Back to Home</Button>
                             

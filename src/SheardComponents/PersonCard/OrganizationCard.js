@@ -4,7 +4,6 @@ import React from 'react';
 import en from 'javascript-time-ago/locale/en'
 import { Button } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
-import { FullscreenOutlined } from '@ant-design/icons';
 import { DeleteOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
@@ -20,9 +19,7 @@ const OrganizationCard = ({data, handleDelete}) => {
         navigate('/')
     }
 
-    const singlePageView = (id) => {
-        navigate(`/organization-details/${id}`)
-    }
+
     return (
         <div className='p-4 mb-3'>
             <div>
@@ -38,7 +35,6 @@ const OrganizationCard = ({data, handleDelete}) => {
                         }
                     </div>
                     <div>
-                        <Button onClick={() => singlePageView(_id)} style={{width: '150px'}} className='flex items-center inline mb-2 mt-2' icon={<FullscreenOutlined />}>Full Details</Button>
                         {
                             handleDelete? <Button onClick={() => handleDelete(_id)} style={{width: '150px'}} className='flex items-center inline' icon={<DeleteOutlined />}>Delete</Button>  : <Button onClick={homePageHandle} style={{width: '150px'}} className='flex items-center inline' icon={<HomeOutlined />}>Back to Home</Button>
                             
@@ -46,7 +42,7 @@ const OrganizationCard = ({data, handleDelete}) => {
                     </div>
                 </div>
                 <p className='font-bold text-lg underline mt-3'>Detailed Results</p>
-                <p className='font-bold underline mt-3'>Reliable</p>
+                {/* <p className='font-bold underline mt-3'>Reliable</p> */}
                 <div className='flex mt-3'>
                     {
                         data?.postingDate && <p className='mr-8'>{data.postingDate}</p>

@@ -9,3 +9,11 @@
 .remove_arrow_right[type=number] {
   -moz-appearance: textfield;
 }
+
+.ant-checkbox{
+  border: 1px solid black !important;
+  border-radius: 5px;
+}
+.ant-checkbox[type=checked]{
+  border: none;
+}
