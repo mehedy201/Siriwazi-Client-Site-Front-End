@@ -14,7 +14,6 @@ const ProductServiceCard = ({data, handleDelete}) => {
     // Create formatter (English)._______________________________
     // const timeAgo = new TimeAgo('en-US')
 
-    console.log(data.discriptionMore)
 
     const navigate = useNavigate('')
     const homePageHandle = () => {

@@ -1,22 +1,21 @@
-import { Empty, Input, Select, Spin } from 'antd';
+import { Input, Select } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Country }  from 'country-state-city';
 import PersonCard from '../../SheardComponents/PersonCard/PersonCard';
 import { SearchOutlined } from '@ant-design/icons';
+import EmptyComponent from '../../SheardComponents/EmptyComponent';
 
 
 const SearchAboutPerson = () => {
 
     const allCountry = Country.getAllCountries();
     const [singleCountry, setSingleCountry] = useState('')
-
     const [identityName, setIdentityName] = useState('')
-
     const [personData, setPersonData] = useState([])
     const [nameFilter, setNameFilter] = useState([])
-    const [idFilter, setIdFilter] = useState([])
-    const [countryFilter, setCountryFilter] = useState([])
     const [searchSummary, setSearchSummary] = useState('')
+    const [searchText, setSearchText] = useState('')
+
 
 
     useEffect(() => {
@@ -28,26 +27,33 @@ const SearchAboutPerson = () => {
         })
     }, [])
 
-    let searchText;
+
     const handleSearch = () => {
-        const afterFilterAllData = (nameFilter.filter(data =>data.identityName === identityName ))
-        // setIdFilter(forFilter.filter(data =>data.identityName === identityName ))
-        setPersonData(afterFilterAllData)
-        
-        if(singleCountry){
-            const countryFilterFromName = afterFilterAllData.filter(data => data.singleCountry === singleCountry)
-            setCountryFilter(countryFilterFromName)
-            if(!searchSummary){
-                console.log('ok')
-                setPersonData(countryFilterFromName)
+        if(identityName){
+             const filter = nameFilter.filter(data =>( data.identityName === identityName))
+            setPersonData(filter)
+            if(identityName && !singleCountry && searchSummary){
+                const newFilter = filter.filter(data => data.identityNo === searchSummary)
+                setPersonData(newFilter)
+            }
+            if(singleCountry){
+                const countryFilter = filter.filter(data => data.singleCountry === singleCountry)
+                if(searchSummary){
+                    const searchSummaryFilter = countryFilter.filter(data => data.identityNo === searchSummary)
+                    setPersonData(searchSummaryFilter)
+                }
+                if(!searchSummary){
+                    setPersonData(countryFilter)
+                }
+            }else{
+                const searchSummaryFilter = filter.filter(data => data.identityNo === searchSummary)
+                setPersonData(searchSummaryFilter)
+            }
+            if(!singleCountry && !searchSummary){
+                setPersonData(filter)
             }
         }
-        if(searchSummary){
-            console.log('no')
-            const filter = countryFilter.filter(data => data.identityNo.includes(searchSummary))
-            setPersonData(filter)
-        }
-        searchText = searchSummary;
+        setSearchText(searchSummary)
     }
 
 
@@ -69,11 +75,11 @@ const SearchAboutPerson = () => {
                         <p className='font-bold mb-1 mt-2'>Search by Select Identity Name</p>
                         <Select
                             placeholder="Please Select One"
+                            allowClear={true}
                             style={{
                               width: '100%',
                             }}
                             size='large'
-                            required 
                             onChange={e => {
                                 setIdentityName(e);
                                 // setPersonData(forFilter.filter(data =>data.identityName === e ))
@@ -95,6 +101,7 @@ const SearchAboutPerson = () => {
                                             <p  className='font-bold mb-1 mt-2'>Country Name</p>
                                             <Select
                                                 size='large'
+                                                allowClear={true}
                                                 placeholder='Select Country'
                                                 style={{
                                                   width: '100%',
@@ -115,8 +122,8 @@ const SearchAboutPerson = () => {
                                                 size='large' 
                                                 onChange={e => {
                                                     setSearchSummary(e.target.value)
-                                                    const filter = idFilter.filter(data => data.identityNo.includes(e.target.value))
-                                                    setPersonData(filter)
+                                                    // const filter = idFilter.filter(data => data.identityNo.includes(e.target.value))
+                                                    // setPersonData(filter)
                                                 }} 
                                                 placeholder={`Type ${identityName} No:`} />
                                         </div>
@@ -135,7 +142,7 @@ const SearchAboutPerson = () => {
                 </div>
                 <div style={{height: '30rem'}} className='overflow-auto p-6 border'>
                     {
-                       personData.length !== 0 ? personData.map(data => <PersonCard key={data._id} data={data} />) : <div className='mt-12'><Empty/></div>
+                       personData.length !== 0 ? personData.map(data => <PersonCard key={data._id} data={data} />) : <div className='mt-12'><EmptyComponent/></div>
                     }
                 </div>
             </div>

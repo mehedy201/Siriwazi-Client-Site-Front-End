@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Country, State, City }  from 'country-state-city';
 import ProductServiceCard from '../../SheardComponents/PersonCard/ProductServiceCard';
 import { SearchOutlined } from '@ant-design/icons';
+import EmptyComponent from '../../SheardComponents/EmptyComponent';
 
 
 
@@ -17,6 +18,7 @@ const SearchAboutProductService = () => {
     const [stateData, setStateData] = useState([]);
     const [cityData, setCityData] = useState([]);
     const [searchSummary, setSearchSummary] = useState('')
+    const [searchText, setSearchText] = useState('')
 
     // Get All Country List _____________________
     const allCountry = Country.getAllCountries();
@@ -35,14 +37,45 @@ const SearchAboutProductService = () => {
             setFilter1(data)
         })
     }, [])
-    // console.log(productServiceName)
-    // console.log(filter3)
 
-    let searchText;
     const handleSearch = () => {
-        const filter = filter1.filter(data => data.productServiceName.toLowerCase().includes(searchSummary.toLowerCase() || data.inputCountryData.includes(inputCountryData) || data.inputStateData.includes(inputStateData) || data.inputCityData.includes(inputCityData)))
-        setProductServiceData(filter)
-        const searchText = searchSummary;
+        if(searchSummary){
+            const filter2 = filter1.filter(data =>  data.productServiceName.toLowerCase() === searchSummary.toLowerCase())
+            if(inputCountryData){
+                const filter3 = filter2.filter(data => data.inputCountryData === inputCountryData)
+                     setProductServiceData(filter3)
+                if(inputStateData){
+                    const filter4 = filter3.filter(data => data.inputStateData === inputStateData)
+                    setProductServiceData(filter4)
+                    if(inputCityData){
+                        const filter5 = filter4.filter(data => data.inputCityData === inputCityData)
+                        setProductServiceData(filter5)
+                    }
+                }
+                else{
+                    setProductServiceData(filter3)
+                }
+            }
+            else{
+                setProductServiceData(filter2)
+            }
+            setSearchText(searchSummary)
+        }
+        if(!searchSummary && inputCountryData){
+             const filter6 = filter1.filter(data => data.inputCountryData === inputCountryData);
+             setProductServiceData(filter6)
+             if(inputStateData){
+                 const filter7 = filter6.filter(data => data.inputStateData === inputStateData)
+                 setProductServiceData(filter7)
+                 if(inputCityData){
+                     const filter8 = filter7.filter(data => data.inputCityData === inputCityData)
+                     setProductServiceData(filter8)
+                 }
+             }
+             else{
+                 setProductServiceData(filter6)
+             }
+        }
     }
     return (
         <>
@@ -173,7 +206,7 @@ const SearchAboutProductService = () => {
                 </div>
                 <div style={{height: '30rem'}} className='overflow-auto p-6 border'>
                     {
-                       productServiceData.length !== 0 ? productServiceData.map(data => <ProductServiceCard key={data._id} data={data} />) : <div className='mt-12'><Empty/></div>
+                       productServiceData.length !== 0 ? productServiceData.map(data => <ProductServiceCard key={data._id} data={data} />) : <div className='mt-12'><EmptyComponent/></div>
                     }
                 </div>
             </div>

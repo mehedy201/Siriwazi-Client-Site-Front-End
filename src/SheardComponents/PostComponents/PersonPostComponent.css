@@ -10,10 +10,14 @@
   -moz-appearance: textfield;
 }
 
-.ant-checkbox{
-  border: 1px solid black !important;
-  border-radius: 5px;
+.ant-btn-sm{
+  background-color: rgb(0, 125, 226) !important;
 }
-.ant-checkbox[type=checked]{
-  border: none;
+
+:where(.css-dev-only-do-not-override-9ntgx0).ant-select-dropdown .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: none !important;
+}
+
+:where(.css-dev-only-do-not-override-9ntgx0).ant-select-dropdown .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+  background-color: #808080 !important;
 }

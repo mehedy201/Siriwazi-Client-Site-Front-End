@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Country, State, City }  from 'country-state-city';
 import OrganizationCard from '../../SheardComponents/PersonCard/OrganizationCard';
 import { SearchOutlined } from '@ant-design/icons';
+import EmptyComponent from '../../SheardComponents/EmptyComponent';
 
 
 const SearchAboutOrganization = () => {
@@ -21,12 +22,10 @@ const SearchAboutOrganization = () => {
 
     const [organizationData, setOrganizationData] = useState([])
     const [filter1 , setFilter1] = useState([]);
-    // const [filter2 , setFilter2] = useState([]);
-    // const [filter3 , setFilter3] = useState([]);
-    // const [filter4 , setFilter4] = useState([]);
     const [singleCountry, setSingleCountry] = useState('')
     const [singleState, setSingleState] = useState('')
     const [singleCity, setSingleCity] = useState('')
+    const [searchText, setSearchText] = useState('')
 
     useEffect(() => {
         fetch('https://siriwazi-backend.onrender.com/organizationData')
@@ -34,16 +33,58 @@ const SearchAboutOrganization = () => {
         .then(data => {
             setOrganizationData(data)
             setFilter1(data)
+            console.log(data)
         })
     }, [])
     // console.log(organizationData)
 
-    let searchText;
+    // if(searchSummary){
+    //     const filter = filter1.filter(data => data.organizationName.toLowerCase().includes(searchSummary.toLowerCase())
+       
+    // }
+
     const handleSearch = () => {
-        const filter = filter1.filter(data => data.organizationName.toLowerCase().includes(searchSummary.toLowerCase() || data.inputCountryData.includes(singleCountry) || data.inputStateData.includes(singleState) || data.inputCityData.includes(singleCity)))
-        setOrganizationData(filter)
-        searchText = searchSummary;
+       if(searchSummary){
+           const filter2 = filter1.filter(data =>  data.organizationName.toLowerCase() === searchSummary.toLowerCase())
+           if(singleCountry){
+               const filter3 = filter2.filter(data => data.inputCountryData === singleCountry)
+                    setOrganizationData(filter3)
+               if(singleState){
+                   const filter4 = filter3.filter(data => data.inputStateData === singleState)
+                   setOrganizationData(filter4)
+                   if(singleCity){
+                       const filter5 = filter4.filter(data => data.inputCityData === singleCity)
+                       setOrganizationData(filter5)
+                   }
+               }
+               else{
+                   setOrganizationData(filter3)
+               }
+           }
+           else{
+               setOrganizationData(filter2)
+           }
+           setSearchText(searchSummary)
+       }
+       if(!searchSummary && singleCountry){
+            const filter6 = filter1.filter(data => data.inputCountryData === singleCountry);
+            setOrganizationData(filter6)
+            if(singleState){
+                const filter7 = filter6.filter(data => data.inputStateData === singleState)
+                setOrganizationData(filter7)
+                if(singleCity){
+                    const filter8 = filter7.filter(data => data.inputCityData === singleCity)
+                    setOrganizationData(filter8)
+                }
+            }
+            else{
+                setOrganizationData(filter6)
+            }
+       }
+       
     }
+
+
     return (
         <>
             <div className='py-4 bg-[#2eab27] border-t-2 border-white-500'>
@@ -178,7 +219,7 @@ const SearchAboutOrganization = () => {
                 </div>
                 <div style={{height: '30rem'}} className='overflow-auto p-6 border'>
                     {
-                       organizationData.length !== 0 ? organizationData.map(data => <OrganizationCard key={data._id} data={data} />) : <div className='mt-12'><Empty/></div>
+                       organizationData.length !== 0 ? organizationData.map(data => <OrganizationCard key={data._id} data={data} />) : <div className='mt-12'><EmptyComponent/></div>
                     }
                 </div>
             </div>
