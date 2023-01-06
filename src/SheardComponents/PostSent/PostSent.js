@@ -8,11 +8,12 @@ const PostSent = () => {
     const handleNavigate = () => {
         navigate('/')
     }
+    
     return (
         <div className='md:my-14 py-4 flex justify-center'>
             <Result
                 status="success"
-                title="Successfully Post Information"
+                title=""
                 subTitle="Thanks fo Post your Valueble feadback. Please go to search option Then you get our post"
                 extra={[
                   <Button onClick={handleNavigate} >Go To Home</Button>,
