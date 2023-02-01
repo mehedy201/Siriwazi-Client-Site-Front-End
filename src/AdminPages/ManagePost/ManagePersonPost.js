@@ -81,9 +81,25 @@ const ManagePersonPost = () => {
             <div className='mb-12 xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto mt-2'>
                 <div className='mb-1'><span className='font-bold text-green-700'>Result</span>: <span className='font-bold border px-2'>{personData.length}</span></div>
                 <div style={{height: '30rem'}} className='overflow-auto p-6 border'>
+                    
+                     <table className="table table-compact w-full">
+                    <thead className='for_sticky'>
+                      <tr>
+                        <th></th> 
+                        <th className='capitalize'>Identity Name</th> 
+                        <th className='capitalize'>Identity No</th> 
+                        <th className='capitalize'>Authenticity</th> 
+                        <th className='capitalize'>Posting Date</th> 
+                        <th className='capitalize'>Details Link</th> 
+                        <th className='capitalize'>Action</th>
+                      </tr>
+                    </thead> 
+                    <tbody>
                     {
                        personData.length !== 0 ? personData.map(data => <PersonCard key={data._id} data={data} handleDelete={handleDelete} />) : <div className='mt-12'><Empty/></div>
                     }
+                    </tbody> 
+                 </table>
                 </div>
             </div>
         </div>

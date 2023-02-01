@@ -1,6 +1,6 @@
 import { Checkbox, DatePicker, Input, Select, Spin, TimePicker } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 import { Country }  from 'country-state-city';
@@ -39,7 +39,7 @@ const PersonPostComponent = ({emailSentLink}) => {
         event.preventDefault()
         setLoading(true)
         const data = {identityName, identityNo, discriptionMore, date, time, place, discribeWithCheck, postingTime, singleCountry, trueFals, postingDate};
-        fetch('http://localhost:5000//personData', {
+        fetch('http://localhost:5000/personData', {
             method: 'POST',
             headers:{
                 'content-type': 'application/json'
@@ -72,7 +72,7 @@ const PersonPostComponent = ({emailSentLink}) => {
                                 required 
                                 onChange={e => setIdentityName(e)}
                                 options={[
-                                  { value: 'Phone/Mobile',label: ' Phone/Mobile', },
+                                  { value: 'Email',label: 'Email', },
                                   { value: 'Car Registration',label: ' Car Registration', },
                                   { value: 'National ID',label: 'National ID', },
                                   { value: 'Passport',label: 'Passport', },
@@ -109,12 +109,11 @@ const PersonPostComponent = ({emailSentLink}) => {
                                         <Input.Group compact>
                                             
                                             <Input
-                                              className='remove_arrow_right'
-                                              type='number'
+                                              type='email'
                                               size='large'
                                             //   onChange={e => setIdentityNo(phoneCode + ' ' + e.target.value)}
                                               onChange={e => setIdentityNo(e.target.value)}
-                                              placeholder='Number'
+                                              placeholder='Email'
                                               style={{
                                                 width: '70%',
                                               }}
@@ -126,7 +125,7 @@ const PersonPostComponent = ({emailSentLink}) => {
                                 <div>
                                     <p  className='font-bold mb-1 mt-2'>{identityName} {identityName? <span>No: <span className='text-red-600'>*</span></span> : ''}</p>
                                     {
-                                        identityName? <Input size='large' className='capitalize' onChange={e => setIdentityNo(e.target.value)} placeholder={`Type ${identityName} No:`} required /> : ''
+                                        identityName? <Input size='large' onChange={e => setIdentityNo(e.target.value)} placeholder={`Type ${identityName} No:`} required /> : ''
                                     }
                                 </div>
                             }

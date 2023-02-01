@@ -82,8 +82,6 @@ const SearchAboutPerson = () => {
                             size='large'
                             onChange={e => {
                                 setIdentityName(e);
-                                // setPersonData(forFilter.filter(data =>data.identityName === e ))
-                                // setIdFilter(forFilter.filter(data =>data.identityName === e ))
                             }}
                             options={[
                               { value: 'Phone/Mobile',label: ' Phone/Mobile', },
@@ -122,8 +120,6 @@ const SearchAboutPerson = () => {
                                                 size='large' 
                                                 onChange={e => {
                                                     setSearchSummary(e.target.value)
-                                                    // const filter = idFilter.filter(data => data.identityNo.includes(e.target.value))
-                                                    // setPersonData(filter)
                                                 }} 
                                                 placeholder={`Type ${identityName} No:`} />
                                         </div>
@@ -141,9 +137,23 @@ const SearchAboutPerson = () => {
                     <div>{searchText && <p className='font-bold border-b'>Search Summary: {searchText}</p>}</div>
                 </div>
                 <div style={{height: '30rem'}} className='overflow-auto p-6 border'>
+                <table className="table table-compact w-full">
+                    <thead className='for_sticky'>
+                      <tr>
+                        <th></th> 
+                        <th className='capitalize'>Identity Name</th> 
+                        <th className='capitalize'>Identity No</th> 
+                        <th className='capitalize'>Authenticity</th> 
+                        <th className='capitalize'>Posting Date</th> 
+                        <th className='capitalize'>Details Link</th> 
+                      </tr>
+                    </thead> 
+                    <tbody>
                     {
                        personData.length !== 0 ? personData.map(data => <PersonCard key={data._id} data={data} />) : <div className='mt-12'><EmptyComponent/></div>
                     }
+                    </tbody> 
+                 </table>
                 </div>
             </div>
         </>

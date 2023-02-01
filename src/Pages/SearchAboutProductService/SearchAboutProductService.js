@@ -1,4 +1,4 @@
-import { Empty, Input, Select } from 'antd';
+import { Input, Select } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Country, State, City }  from 'country-state-city';
 import ProductServiceCard from '../../SheardComponents/PersonCard/ProductServiceCard';
@@ -26,9 +26,6 @@ const SearchAboutProductService = () => {
     const [productServiceData, setProductServiceData] = useState([]);
 
     const [filter1 , setFilter1] = useState([]);
-    // const [filter2 , setFilter2] = useState([]);
-    // const [filter3 , setFilter3] = useState([]);
-    // const [filter4 , setFilter4] = useState([]);
     useEffect(() => {
         fetch('https://siriwazi-backend.onrender.com/product-service')
         .then(res => res.json())
@@ -94,16 +91,6 @@ const SearchAboutProductService = () => {
                         <p className='font-bold mb-1 mt-2'>Search by Product/Service Name</p>
                         <Input size='large' onChange={e => {
                             setSearchSummary(e.target.value)
-                            // if(filter3.length > 0 ){
-                            //     const filter = filter3.filter(data => data.productServiceName.toLowerCase().includes(e.target.value.toLowerCase()))
-                            //     setProductServiceData(filter)
-                            //     setFilter2(filter)
-                            // }
-                            // else{
-                            //     const filter = filter1.filter(data => data.productServiceName.toLowerCase().includes(e.target.value.toLowerCase()))
-                            //     setProductServiceData(filter)
-                            //     setFilter2(filter)
-                            // }
                         }} placeholder='Type Organization Name' />
                     </div>
                     <div className='grow md:flex'>
@@ -111,6 +98,7 @@ const SearchAboutProductService = () => {
                             <p className='font-bold mb-1 mt-2'>Country</p>
                             <Select
                                 placeholder="Select Country"
+                                allowClear={true}
                                 style={{
                                   width: '100%',
                                 }}
@@ -118,18 +106,6 @@ const SearchAboutProductService = () => {
                                 onChange={e => {
                                     const value = e.split('-');
                                     setInputCountryData(value[1]);
-
-                                    // if(filter2.length > 0 ){
-                                    //     const filter = filter2.filter(data => data.inputCountryData.includes(value[1]))
-                                    //     setProductServiceData(filter)
-                                    //     setFilter3(filter)
-                                    // }
-                                    // else{
-                                    //     const filter = filter1.filter(data => data.inputCountryData.toLowerCase().includes(value[1].toLowerCase()))
-                                    //     setProductServiceData(filter)
-                                    //     setFilter3(filter)
-                                    // }
-
                                     const stateList = State.getStatesOfCountry(value[0])
                                     setStateData(stateList)
                                     stateList.map(s => setCode(s.countryCode))
@@ -147,17 +123,13 @@ const SearchAboutProductService = () => {
                             <p className='font-bold mb-1 mt-2'>State</p>
                             <Select
                                 placeholder="Select State"
+                                allowClear={true}
                                 style={{
                                   width: '100%',
                                 }}
                                 size='large'
                                 onChange={e => {
                                     const value = e.split('-');
-                                    // const filter = filter3.filter(data => data.inputStateData.toLowerCase().includes(value[1].toLowerCase()))
-                                    // setProductServiceData(filter)
-                                    // setFilter4(filter)
-
-
                                     setInputStateData(value[1])
                                     const city = City.getCitiesOfState(code, value[0]);
                                     setCityData(city)
@@ -175,14 +147,13 @@ const SearchAboutProductService = () => {
                             <p className='font-bold mb-1 mt-2'>City</p>
                             <Select
                                 placeholder= 'Select City'
+                                allowClear={true}
                                 style={{
                                   width: '100%',
                                 }}
                                 size='large'
                                 onChange={e => {
                                     setInputCityData(e)
-                                    // const filter = filter4.filter(data => data.inputCityData.toLowerCase().includes(e.toLowerCase()))
-                                    // setProductServiceData(filter)
                                 }}
                                 options={
                                     cityData?.map(city => {
@@ -205,9 +176,26 @@ const SearchAboutProductService = () => {
                     <div>{searchText && <p className='font-bold border-b'>Search Summary: {searchText}</p>}</div>
                 </div>
                 <div style={{height: '30rem'}} className='overflow-auto p-6 border'>
+                <table className="table table-compact w-full">
+                    <thead className='for_sticky'>
+                      <tr>
+                        <th></th> 
+                        <th className='capitalize'>Product/Service Name</th> 
+                        <th className='capitalize'>Country</th> 
+                        <th className='capitalize'>State</th> 
+                        <th className='capitalize'>City</th>  
+                        <th className='capitalize'>Authenticity</th> 
+                        <th className='capitalize'>Posting Date</th> 
+                        <th className='capitalize'>Details Link</th> 
+                      </tr>
+                    </thead> 
+                    <tbody>
                     {
                        productServiceData.length !== 0 ? productServiceData.map(data => <ProductServiceCard key={data._id} data={data} />) : <div className='mt-12'><EmptyComponent/></div>
                     }
+                    </tbody> 
+                 </table>
+                    
                 </div>
             </div>
         </>

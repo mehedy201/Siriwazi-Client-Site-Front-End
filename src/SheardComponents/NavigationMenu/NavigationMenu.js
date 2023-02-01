@@ -1,8 +1,5 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {auth} from '../../firebase.init';
-import logo from '../../Images/siriwazi.png'
-import { signOut } from 'firebase/auth';
 
 
 const NavigationMenu = () => {
@@ -12,14 +9,12 @@ const NavigationMenu = () => {
         navigate('/')
     }
 
-
-
     return (
         <div className='bg-[#8f0909]'>
           
         <div className="navbar xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto">
             <div className="navbar-start">
-              <img onClick={logoClick} className='py-3' style={{height: '100px', width: 'auto', cursor: 'pointer'}} src={logo} alt="siriwazi" />
+              <p onClick={logoClick} className='py-5 fw-bold text-2xl for_font_family cursor-pointer text-white'>Database Management</p>
               <div className="dropdown">
                 <label tabIndex="0" className="btn btn-ghost lg:hidden">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>

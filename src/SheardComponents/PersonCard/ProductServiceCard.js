@@ -1,70 +1,39 @@
 import React from 'react';
-// import TimeAgo from 'javascript-time-ago'
-// English Time______________________________
-import en from 'javascript-time-ago/locale/en'
-import { Button } from 'antd';
-import { HomeOutlined } from '@ant-design/icons';
-import { DeleteOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
-// TimeAgo.addLocale(en);
 
 const ProductServiceCard = ({data, handleDelete}) => {
-    const { trueFals, _id} = data;
-    // Create formatter (English)._______________________________
-    // const timeAgo = new TimeAgo('en-US')
-
+    const { _id} = data;
 
     const navigate = useNavigate('')
-    const homePageHandle = () => {
+    const singlePageHandle = () => {
         navigate('/')
     }
 
     return (
-        <div className='p-4 mb-3'>
-            <div>
-                <div className='flex justify-between'>
-                    <div>
-                        {
-                            data?.productServiceName && <p className='text-xl for_font_family font-bold'>Product/Service Name: {data.productServiceName}</p>
-                        }
-                        {
-                            data?.discribeWithCheck? 
-                            data.discribeWithCheck.map((check, index) => <p key={index} className='font-semibold pt-0.5 pb-1 px-4 mr-2 rounded-lg'>{check}</p>)
-                            : ''
-                        }
-                    </div>
-                    <div>
-                        {
-                            handleDelete? <Button onClick={() => handleDelete(_id)} style={{width: '150px'}} className='flex items-center inline' icon={<DeleteOutlined />}>Delete</Button>  : <Button onClick={homePageHandle} style={{width: '150px'}} className='flex items-center inline' icon={<HomeOutlined />}>Back to Home</Button>
-                            
-                        }
-                    </div>
-                </div>
-                <p className='font-bold text-lg underline mt-3'>Detailed Results</p>
-                {/* <p className='font-bold underline mt-3'>Reliable</p> */}
-                <div className='flex mt-3'>
-                    {
-                        data?.postingDate && <p className='mr-8'>{data.postingDate}</p>
-                    }
-                    {
-                        data?.postingTime && <p>{data.postingTime}</p>
-                    }
-                </div>
-                    {
-                        data?.discriptionMore && <p className='mb-2 mt-3'>{data.discriptionMore}</p>
-                    }
-                <div className='md:flex sm:flex justify-around my-3'>
-                    <span className='font-bold'>Place event took place- {data?.place? <span>{data.place}</span> : 'N/A'}</span>
-                    <span className='font-bold'>Date it happened- {data?.date? <span>{data.date}</span> : 'N/A'}</span>
-                    <span className='font-bold'> Time- {data?.time? <span>{data.time}</span> : 'N/A'}</span>
-                </div>
-                <p className='bg-[#EE4B2B] font-bold px-4 mt-2 py-2 rounded-lg inline'>{trueFals}</p>
-            </div>
-            <div className='flex justify-center'>
-                <div style={{width: '60%'}} className='mt-8 h-1 bg-[#0eadc9] rounded-xl'></div>
-            </div>
-        </div>
+        <tr>
+            <th></th> 
+            <td className='text-cyan-600 font-semibold'>{ data?.productServiceName? data.productServiceName: ''} </td> 
+            <td>{ data?.inputCountryData? data.inputCountryData: ''}</td> 
+            <td>{ data?.inputStateData? data.inputStateData: ''}</td> 
+            <td>{ data?.inputCityData? data.inputCityData: ''}</td>
+            <td>
+                {
+                    data?.trueFals === 'Most likely not true' && <span className='font-semibold py-0.5 px-4 border border-red-700'>{data?.trueFals}</span>
+                }
+                {
+                    data?.trueFals === 'Most likely true' && <span className='font-semibold py-0.5 px-4 border border-green-500'>{data?.trueFals}</span>
+                }
+                {
+                    data?.trueFals === 'Maybe true' && <span className='font-semibold py-0.5 px-4 border border-amber-400'>{data?.trueFals}</span>
+                }
+            </td> 
+            <td>{data?.postingDate && data.postingDate}</td> 
+            <td><button onClick={() => singlePageHandle(_id)} className='btn btn-xs bg-sky-400 capitalize border-none'>Full Details</button></td> 
+            {
+                handleDelete && <td><button onClick={() => handleDelete(_id)} className='btn bg-red-700 btn-xs capitalize border-none'>Delete</button></td>
+            }
+        </tr>
     );
 };
 

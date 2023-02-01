@@ -1,4 +1,4 @@
-import { Empty, Input, Select } from 'antd';
+import { Input, Select } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Country, State, City }  from 'country-state-city';
 import OrganizationCard from '../../SheardComponents/PersonCard/OrganizationCard';
@@ -36,12 +36,7 @@ const SearchAboutOrganization = () => {
             console.log(data)
         })
     }, [])
-    // console.log(organizationData)
 
-    // if(searchSummary){
-    //     const filter = filter1.filter(data => data.organizationName.toLowerCase().includes(searchSummary.toLowerCase())
-       
-    // }
 
     const handleSearch = () => {
        if(searchSummary){
@@ -102,17 +97,6 @@ const SearchAboutOrganization = () => {
                         <p className='font-bold mb-1 mt-2'>Search by Organization Name</p>
                         <Input size='large' onChange={e => {
                             setSearchSummary(e.target.value)
-                            // if(filter3.length > 0 ){
-                            //     const filter = filter3.filter(data => data.organizationName.toLowerCase().includes(e.target.value.toLowerCase()))
-                            //     setOrganizationData(filter)
-                            //     setFilter2(filter)
-                            // }
-                            // else{
-                            //     const filter = filter1.filter(data => data.organizationName.toLowerCase().includes(e.target.value.toLowerCase()))
-                            //     setOrganizationData(filter)
-                            //     setFilter2(filter)
-                            // }
-                            
                         }} placeholder='Type Organization Name' />
                     </div>
                     <div className='grow md:flex'>
@@ -127,22 +111,6 @@ const SearchAboutOrganization = () => {
                                 onChange={ e => {
                                     const value = e.split('-');
                                     setSingleCountry(value[1])
-                                    // setSingleCountry(e.target.value)
-                                    // if(filter2.length > 0 ){
-                                    //     const filter = filter2.filter(data => data.inputCountryData.includes(value[1]))
-                                    //     setOrganizationData(filter)
-                                    //     setFilter3(filter)
-                                    //     console.log('filter2', filter)
-                                    //     console.log('filter2')
-                                    // }
-                                    // else{
-                                    //     const filter = filter1.filter(data => data.inputCountryData.toLowerCase().includes(value[1].toLowerCase()))
-                                    //     setOrganizationData(filter)
-                                    //     setFilter3(filter)
-                                    //     console.log('filter1', filter3.length)
-                                    //     console.log('filter1')
-                                    // }
-
                                     const stateList = State.getStatesOfCountry(value[0])
                                     setStateData(stateList)
                                     stateList.map(s => setCode(s.countryCode))
@@ -167,10 +135,6 @@ const SearchAboutOrganization = () => {
                                 onChange={e => {
                                     const value = e.split('-');
                                     setSingleState(value[1])
-                                    // const filter = filter3.filter(data => data.inputStateData.toLowerCase().includes(value[1].toLowerCase()))
-                                    // setOrganizationData(filter)
-                                    // setFilter4(filter)
-
                                     setInputStateData(value[1])
                                     const city = City.getCitiesOfState(code, value[0]);
                                     setCityData(city)
@@ -194,8 +158,6 @@ const SearchAboutOrganization = () => {
                                 size='large'
                                 onChange={e => {
                                     setSingleCity(e)
-                                    // const filter = filter4.filter(data => data.inputCityData.toLowerCase().includes(e.toLowerCase()))
-                                    // setOrganizationData(filter)
                                 }}
                                 options={
                                     cityData?.map(city => {
@@ -218,9 +180,26 @@ const SearchAboutOrganization = () => {
                     <div>{searchText && <p className='font-bold border-b'>Search Summary: {searchText}</p>}</div>
                 </div>
                 <div style={{height: '30rem'}} className='overflow-auto p-6 border'>
+                <table className="table table-compact w-full">
+                    <thead className='for_sticky'>
+                      <tr>
+                        <th></th> 
+                        <th className='capitalize'>Organization Name</th> 
+                        <th className='capitalize'>Country</th> 
+                        <th className='capitalize'>State</th> 
+                        <th className='capitalize'>City</th> 
+                        <th className='capitalize'>Authenticity</th> 
+                        <th className='capitalize'>Posting Date</th> 
+                        <th className='capitalize'>Details Link</th> 
+                      </tr>
+                    </thead> 
+                    <tbody>
                     {
                        organizationData.length !== 0 ? organizationData.map(data => <OrganizationCard key={data._id} data={data} />) : <div className='mt-12'><EmptyComponent/></div>
                     }
+                    </tbody> 
+                 </table>
+                    
                 </div>
             </div>
         </>

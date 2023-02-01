@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import './SinglePage.css'
 // import TimeAgo from 'javascript-time-ago'
 // // English Time______________________________
-import en from 'javascript-time-ago/locale/en'
+// import en from 'javascript-time-ago/locale/en'
 
 // TimeAgo.addLocale(en)
 
