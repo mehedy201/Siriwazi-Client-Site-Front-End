@@ -7,7 +7,7 @@ const EditHeroContent = () => {
 
     const [data, setData] = useState([])  
 
-    fetch('https://siriwazi-backend.onrender.com/heroContent')
+    fetch('https://database-management-mehedi.onrender.com/heroContent')
         .then(res => res.json())
         .then(data => setData(data))
     

@@ -28,7 +28,7 @@ const SearchAboutOrganization = () => {
     const [searchText, setSearchText] = useState('')
 
     useEffect(() => {
-        fetch('https://siriwazi-backend.onrender.com/organizationData')
+        fetch('https://database-management-mehedi.onrender.com/organizationData')
         .then(res => res.json())
         .then(data => {
             setOrganizationData(data)

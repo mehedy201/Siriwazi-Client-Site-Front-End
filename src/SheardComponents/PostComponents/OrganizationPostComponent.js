@@ -39,7 +39,7 @@ const OrganizationPostComponent = ({emailSentLink}) => {
         event.preventDefault()
         setLoading(true)
         const data = {organizationName, inputCountryData, inputStateData, place, inputCityData, discriptionMore, date, time, discribeWithCheck, trueFals, postingDate, postingTime};
-        fetch('https://siriwazi-backend.onrender.com/organizationData', {
+        fetch('https://database-management-mehedi.onrender.com/organizationData', {
             method: 'POST',
             headers:{
                 'content-type': 'application/json'

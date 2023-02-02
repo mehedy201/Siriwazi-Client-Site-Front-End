@@ -7,7 +7,7 @@ const SinglePageOrganization = () => {
     const [data, setData ] =useState([])
  
     useEffect(() => {
-        fetch(`https://siriwazi-backend.onrender.com/organizationData/${id}`)
+        fetch(`https://database-management-mehedi.onrender.com/organizationData/${id}`)
             .then(res => res.json())
             .then(data => setData(data))
     },[id])

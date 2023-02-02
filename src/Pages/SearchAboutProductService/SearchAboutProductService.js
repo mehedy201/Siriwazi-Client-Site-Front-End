@@ -27,7 +27,7 @@ const SearchAboutProductService = () => {
 
     const [filter1 , setFilter1] = useState([]);
     useEffect(() => {
-        fetch('https://siriwazi-backend.onrender.com/product-service')
+        fetch('https://database-management-mehedi.onrender.com/product-service')
         .then(res => res.json())
         .then(data => {
             setProductServiceData(data)

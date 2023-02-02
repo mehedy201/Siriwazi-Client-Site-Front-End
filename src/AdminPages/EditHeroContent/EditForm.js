@@ -16,7 +16,7 @@ const EditForm = ({newData}) => {
             setTitle(newData.title)
             setText(newData.text)
         }
-        fetch('https://siriwazi-backend.onrender.com/heroContent', {
+        fetch('https://database-management-mehedi.onrender.com/heroContent', {
             method: 'PUT',
             headers:{
                 'content-type': 'application/json'

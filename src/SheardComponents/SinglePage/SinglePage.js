@@ -8,7 +8,7 @@ const SinglePage = () => {
 
     const [data, setData ] =useState([])
     useEffect(() => {
-        fetch(`https://siriwazi-backend.onrender.com/personData/${id}`)
+        fetch(`https://database-management-mehedi.onrender.com/personData/${id}`)
             .then(res => res.json())
             .then(data => setData(data))
     },[id])

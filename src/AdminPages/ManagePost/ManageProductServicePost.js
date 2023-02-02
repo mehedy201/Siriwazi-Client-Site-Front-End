@@ -26,7 +26,7 @@ const ManageProductServicePost = () => {
     const [filter3 , setFilter3] = useState([]);
     const [filter4 , setFilter4] = useState([]);
     useEffect(() => {
-        fetch('https://siriwazi-backend.onrender.com/product-service')
+        fetch('https://database-management-mehedi.onrender.com/product-service')
         .then(res => res.json())
         .then(data => {
             setProductServiceData(data)
@@ -38,7 +38,7 @@ const ManageProductServicePost = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure to Delete');
         if(proceed){
-            const url = `https://siriwazi-backend.onrender.com/product-service/${id}`;
+            const url = `https://database-management-mehedi.onrender.com/product-service/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

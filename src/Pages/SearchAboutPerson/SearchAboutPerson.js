@@ -19,7 +19,7 @@ const SearchAboutPerson = () => {
 
 
     useEffect(() => {
-        fetch('https://siriwazi-backend.onrender.com/personData')
+        fetch('https://database-management-mehedi.onrender.com/personData')
         .then(res => res.json())
         .then(data => {
             setPersonData(data)

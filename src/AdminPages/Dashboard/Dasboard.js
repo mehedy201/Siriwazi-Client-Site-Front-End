@@ -4,7 +4,7 @@ const Dasboard = () => {
     // Person Data 
     const [persondData, setPersonData] = useState([])
     useEffect(() => {
-        fetch('https://siriwazi-backend.onrender.com/personData')
+        fetch('https://database-management-mehedi.onrender.com/personData')
         .then(res => res.json())
         .then(data => {
             setPersonData(data)
@@ -13,7 +13,7 @@ const Dasboard = () => {
     // Person Data 
     const [organizationData, setOrganizationData] = useState([])
     useEffect(() => {
-        fetch('https://siriwazi-backend.onrender.com/organizationData')
+        fetch('https://database-management-mehedi.onrender.com/organizationData')
         .then(res => res.json())
         .then(data => {
             setOrganizationData(data)
@@ -22,7 +22,7 @@ const Dasboard = () => {
     // Person Data 
     const [productService, setProductService] = useState([])
     useEffect(() => {
-        fetch('https://siriwazi-backend.onrender.com/product-service')
+        fetch('https://database-management-mehedi.onrender.com/product-service')
         .then(res => res.json())
         .then(data => {
             setProductService(data)

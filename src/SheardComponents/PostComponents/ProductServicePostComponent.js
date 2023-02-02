@@ -42,7 +42,7 @@ const ProductServicePostComponent = ({senEmailLink}) => {
         event.preventDefault()
         setLoading(true)
         const data = {productServiceName, inputCountryData, place, inputStateData, inputCityData, discriptionMore, date, time, postingDate, discribeWithCheck, trueFals, companyOrganizationName, postingTime};
-        fetch('https://siriwazi-backend.onrender.com/product-service', {
+        fetch('https://database-management-mehedi.onrender.com/product-service', {
             method: 'POST',
             headers:{
                 'content-type': 'application/json'
