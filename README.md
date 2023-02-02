@@ -6,7 +6,6 @@ Admin Password: 123456
 
 The main function of a database management website is to post information about individuals, organizations, and products/services. And that information can be seen again by another visitor. 
 
+### Please e Check all Functionality
 
 
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
