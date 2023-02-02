@@ -1,9 +1,7 @@
-import { Spin } from 'antd';
 import React, { useEffect, useState } from 'react';
 
 const Dasboard = () => {
     // Person Data 
-    let loading;
     const [persondData, setPersonData] = useState([])
     useEffect(() => {
         fetch('https://siriwazi-backend.onrender.com/personData')

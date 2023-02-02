@@ -1,26 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './SinglePage.css'
-// import TimeAgo from 'javascript-time-ago'
-// // English Time______________________________
-// import en from 'javascript-time-ago/locale/en'
 
-// TimeAgo.addLocale(en)
 
 const SinglePage = () => {
     const {id} = useParams('')
-
-    // Create formatter (English)._______________________________
-    // const timeAgo = new TimeAgo('en-US')
-
 
     const [data, setData ] =useState([])
     useEffect(() => {
         fetch(`https://siriwazi-backend.onrender.com/personData/${id}`)
             .then(res => res.json())
             .then(data => setData(data))
-    },[])
-
+    },[id])
 
 
     return (

@@ -9,7 +9,8 @@ const SinglePageProductService = () => {
         fetch(`https://siriwazi-backend.onrender.com/product-service/${id}`)
             .then(res => res.json())
             .then(data => setData(data))
-    },[])
+    },[id])
+    
     return (
         <>
         <div className='py-4 bg-[#2eab27] border-t-2 border-white-500'>

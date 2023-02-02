@@ -10,7 +10,7 @@ const SinglePageOrganization = () => {
         fetch(`https://siriwazi-backend.onrender.com/organizationData/${id}`)
             .then(res => res.json())
             .then(data => setData(data))
-    },[])
+    },[id])
 
     return (
         <>

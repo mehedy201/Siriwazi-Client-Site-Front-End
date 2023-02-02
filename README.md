@@ -1,6 +1,12 @@
-# Getting Started with Create React App
+# Database Management Website
+Live Site Link:
+Admin Link:
+Admin Email: 
+Admin Password: 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The main function of a database management website is to post information about individuals, organizations, and products/services. And that information can be seen again by another visitor. 
+
+
 
 ## Available Scripts
 
