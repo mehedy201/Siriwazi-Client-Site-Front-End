@@ -28,7 +28,7 @@ const PersonCard = ({data, handleDelete}) => {
                     data?.trueFals === 'Maybe true' && <span className='font-semibold py-0.5 px-4 border border-amber-400'>{data?.trueFals}</span>
                 }
             </td> 
-            <td>{data?.date && data.date}</td> 
+            <td>{data?.postingDate && data.postingDate}</td> 
             <td><button onClick={() => singlePageHandle(_id)} className='btn btn-xs bg-sky-400 capitalize border-none'>Full Details</button></td> 
             {
                 handleDelete && <td><button onClick={() => handleDelete(_id)} className='btn bg-red-700 btn-xs capitalize border-none'>Delete</button></td>

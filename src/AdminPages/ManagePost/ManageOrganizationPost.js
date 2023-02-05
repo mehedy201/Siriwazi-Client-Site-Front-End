@@ -173,10 +173,12 @@ const ManageOrganizationPost = () => {
                       <tr>
                         <th></th> 
                         <th className='capitalize'>Organization Name</th> 
-                        <th className='capitalize'>Place event</th> 
+                        <th className='capitalize'>Country</th> 
+                        <th className='capitalize'>State</th> 
+                        <th className='capitalize'>City</th> 
                         <th className='capitalize'>Authenticity</th> 
-                        <th className='capitalize'>Posting Date</th> 
-                        <th className='capitalize'>Details Link</th> 
+                        <th className='capitalize'>Posting Date</th>
+                        <th className='capitalize'>Details Link</th>
                         <th className='capitalize'>Action</th>
                       </tr>
                     </thead> 

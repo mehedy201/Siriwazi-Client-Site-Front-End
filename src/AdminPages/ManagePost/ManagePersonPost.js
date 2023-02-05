@@ -88,6 +88,7 @@ const ManagePersonPost = () => {
                         <th></th> 
                         <th className='capitalize'>Identity Name</th> 
                         <th className='capitalize'>Identity No</th> 
+                        <th className='capitalize'>Country</th> 
                         <th className='capitalize'>Authenticity</th> 
                         <th className='capitalize'>Posting Date</th> 
                         <th className='capitalize'>Details Link</th> 
