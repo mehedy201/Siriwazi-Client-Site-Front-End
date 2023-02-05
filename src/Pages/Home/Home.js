@@ -15,8 +15,6 @@ const Home = () => {
   const [proceed, setProceed] = useState(false)
   const [proceedMessage, setProceedMessage] = useState('')
 
-  // const [data, setData] = useState([])  
-
   const {data, isLoading} = useQuery({
     queryKey: ['heroContent'],
     queryFn: () => fetch('https://database-management-mehedi.onrender.com/heroContent')
@@ -28,13 +26,6 @@ const Home = () => {
   if(isLoading){
     heroLoading = <Skeleton active />
   }
-  // useEffect(() => {
-  //   fetch('https://database-management-mehedi.onrender.com/heroContent')
-  //       .then(res => res.json())
-  //       .then(data => {
-  //         setData(data)
-  //       })
-  // },[])
 
   const onChange = (e) => {
     setTermsCondition(e.target.checked);

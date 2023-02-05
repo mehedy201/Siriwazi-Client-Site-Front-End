@@ -39,7 +39,7 @@ const PersonPostComponent = ({emailSentLink}) => {
         event.preventDefault()
         setLoading(true)
         const data = {identityName, identityNo, discriptionMore, date, time, place, discribeWithCheck, postingTime, singleCountry, trueFals, postingDate};
-        fetch('http://localhost:5000/personData', {
+        fetch('https://database-management-mehedi.onrender.com/personData', {
             method: 'POST',
             headers:{
                 'content-type': 'application/json'
