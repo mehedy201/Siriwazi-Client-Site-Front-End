@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import heroImage from '../../Images/1000_F (1).jpg'
 import './Home.css';
 import { BsPlusLg } from 'react-icons/bs';
 import { BsSearch } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { Checkbox } from 'antd';
+import { Checkbox, Skeleton } from 'antd';
 import HeroContent from './HeroContent';
+import { useQuery } from '@tanstack/react-query';
 
 
 
@@ -14,11 +15,26 @@ const Home = () => {
   const [proceed, setProceed] = useState(false)
   const [proceedMessage, setProceedMessage] = useState('')
 
-  const [data, setData] = useState([])  
+  // const [data, setData] = useState([])  
 
-    fetch('https://database-management-mehedi.onrender.com/heroContent')
-        .then(res => res.json())
-        .then(data => setData(data))
+  const {data, isLoading} = useQuery({
+    queryKey: ['heroContent'],
+    queryFn: () => fetch('https://database-management-mehedi.onrender.com/heroContent')
+                   .then(res => res.json())
+  })
+
+  let heroLoading;
+
+  if(isLoading){
+    heroLoading = <Skeleton active />
+  }
+  // useEffect(() => {
+  //   fetch('https://database-management-mehedi.onrender.com/heroContent')
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         setData(data)
+  //       })
+  // },[])
 
   const onChange = (e) => {
     setTermsCondition(e.target.checked);
@@ -34,20 +50,21 @@ const Home = () => {
 
 
     return (
-        <div className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto h-screen flex items-center'>
-          <div className="hero my-8">
-            <div className="hero-content md:flex flex-row-reverse">
-              <div className='flex-auto'>
+        <div className='xl:max-w-[1140px] lg:max-w-[90%] md:max-w-[90%] sm:max-w-[90%] w-[95%] mx-auto md:h-screen lg:h-screen xl:h-screen flex items-center'>
+          <div className="my-8">
+            <div className="md:flex flex-row justify-between items-center md:flex-row-reverse">
+              <div className='md:mx-11 flex justify-center'>
                <img src={heroImage} style={{padding: '10px', height: '350px', width: 'auto'}} className="max-w-sm" alt='postandsearch'/>
               </div>
-              <div className='flex-auto mr-12'>
+              <div className=''>
                 <div>
+                  {heroLoading}
                   {
-                    data?.map((newData, index) => <HeroContent key={index} newData={newData}/>)
+                    data?.map((newData, index) => <HeroContent key={index} newData={newData} heroLoading={heroLoading}/>)
                   }
                 </div>
-                <div className='flex mt-3'>
-                  <div className='mr-4'>
+                <div className='md:flex mt-3'>
+                  <div className='md:mr-4'>
                   {/* <!-- The button to open modal --> */}
                       <label htmlFor="my-modal-6" className="hero_section_button1 flex items-center"><BsPlusLg className='mr-2'/> Post Information</label>
 
