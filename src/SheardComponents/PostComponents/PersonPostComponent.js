@@ -61,7 +61,7 @@ const PersonPostComponent = ({emailSentLink}) => {
                     <p className='font-bold text-2xl for_font_family mb-4'>Create Your Post</p>
                     <div className='w-100 bg-red-200 md:w-1/2 mb-4' style={{height: '1px'}}></div>
                     <div className='md:flex justify-between'>
-                        <div className='flex-1 md:pr-12'>
+                        <div className='md:pr-12'>
                             <p className='font-bold mb-1 mt-2'>Select Form of Identification <span className='text-red-600'>*</span></p>
                             <Select
                                 placeholder="Please Select One"
@@ -72,6 +72,7 @@ const PersonPostComponent = ({emailSentLink}) => {
                                 required 
                                 onChange={e => setIdentityName(e)}
                                 options={[
+                                  { value: 'Phone/Mobile',label: 'Phone/Mobile', },
                                   { value: 'Email',label: 'Email', },
                                   { value: 'Car Registration',label: ' Car Registration', },
                                   { value: 'National ID',label: 'National ID', },
@@ -81,51 +82,36 @@ const PersonPostComponent = ({emailSentLink}) => {
                                 ]}
                             />
                         </div>
-                        <div className='flex-1'>
+                        <div className='grow'>
                             <div>
                             {
-                                identityName === 'Phone/Mobile'? 
-                                <div className='md:flex'>
-                                    <div className='flex-1 mr-2'>
-                                        <p  className='font-bold mb-1 mt-2'>Country Name</p>
-                                        <Select
-                                            size='large'
-                                            placeholder='Select Country'
-                                            style={{
-                                              width: '100%',
-                                            }}
-                                            onChange={e => {
-                                                setSingleCountry(e)
-                                            }}
-                                            options={allCountry.map(country => {
-                                                // let removePlus = country.phonecode.replace('+', ' ')
-                                                // let addPlus = '+' + removePlus
-                                                return { value: country.name, label: country.name,}
-                                            })}
-                                        />
-                                    </div>
-                                    <div className='flex-1'>
-                                        <p  className='font-bold mb-1 mt-2'>Phone Number</p>
-                                        <Input.Group compact>
-                                            
-                                            <Input
-                                              type='email'
-                                              size='large'
-                                            //   onChange={e => setIdentityNo(phoneCode + ' ' + e.target.value)}
-                                              onChange={e => setIdentityNo(e.target.value)}
-                                              placeholder='Email'
-                                              style={{
-                                                width: '70%',
-                                              }}
-                                            />
-                                        </Input.Group>
-                                    </div>
-                                   
-                                </div> :
                                 <div>
-                                    <p  className='font-bold mb-1 mt-2'>{identityName} {identityName? <span>No: <span className='text-red-600'>*</span></span> : ''}</p>
                                     {
-                                        identityName? <Input size='large' onChange={e => setIdentityNo(e.target.value)} placeholder={`Type ${identityName} No:`} required /> : ''
+                                        identityName? 
+                                        <div className='md:flex justify-between items-center gap-4'>
+                                            <div className='md:flex-1'>
+                                                <p  className='font-bold mb-1 mt-2'>{identityName} {identityName? <span>No: <span className='text-red-600'>*</span></span> : ''}</p>
+                                                <Input size='large' onChange={e => setIdentityNo(e.target.value)} placeholder={`Type ${identityName} No:`} required />
+                                            </div>
+                                            <div className='md:flex-1'>
+                                                <div>
+                                                    <p  className='font-bold mb-1 mt-2'>Country Name</p>
+                                                    <Select
+                                                        size='large'
+                                                        placeholder='Select Country'
+                                                        style={{
+                                                          width: '100%',
+                                                        }}
+                                                        onChange={e => {
+                                                            setSingleCountry(e)
+                                                        }}
+                                                        options={allCountry.map(country => {
+                                                            return { value: country.name, label: country.name,}
+                                                        })}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div> : ''
                                     }
                                 </div>
                             }

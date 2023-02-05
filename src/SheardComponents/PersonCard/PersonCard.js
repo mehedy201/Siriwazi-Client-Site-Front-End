@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const PersonCard = ({data, handleDelete}) => {
     const { _id} = data;
+    console.log(data)
 
     const navigate = useNavigate('')
     const singlePageHandle = (id) => {
@@ -15,6 +16,7 @@ const PersonCard = ({data, handleDelete}) => {
             <th></th> 
             <td className='text-cyan-600 font-semibold'>{ data?.identityName? data.identityName: ''} </td> 
             <td>{ data?.identityNo? data.identityNo: ''}</td> 
+            <td>{ data?.singleCountry? data.singleCountry: ''}</td> 
             <td>
                 {
                     data?.trueFals === 'Most likely not true' && <span className='font-semibold py-0.5 px-4 border border-red-700'>{data?.trueFals}</span>
